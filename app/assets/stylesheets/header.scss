@@ -3,12 +3,17 @@
 header {
   padding: 5px 10px;
   height: 80px;
-  width: 100vw;
+  width: calc(100vw - 20px);
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
   font-size: 22px;
   @include fancy-links;
+
+  ul {
+    padding-right: 10px;
+    list-style-type: none;
+  }
 }
 
 header.floating {
