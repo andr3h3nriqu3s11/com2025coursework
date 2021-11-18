@@ -1,0 +1,12 @@
+@mixin fancy-links {
+  a, a:visited {
+    font-size: 1em;
+    color: black;
+    text-decoration: none;
+  }
+  .darkmode {
+    a, a:visited {
+      color: white;
+    }
+  }
+}

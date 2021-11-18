@@ -1,0 +1,22 @@
+@import "generic_styles";
+
+header {
+  padding: 5px 10px;
+  height: 80px;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  font-size: 22px;
+  @include fancy-links;
+}
+
+header.floating {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.darkmode {
+
+}
