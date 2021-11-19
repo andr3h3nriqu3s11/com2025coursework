@@ -20,6 +20,13 @@ header {
   ul {
     padding-right: 10px;
     list-style-type: none;
+    display: grid;
+    justify-items: center;
+    grid-auto-flow: column;
+    grid-column-gap: 10px;
+  }
+  li {
+    display: block;
   }
 
   button {

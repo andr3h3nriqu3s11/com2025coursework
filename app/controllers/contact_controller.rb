@@ -15,7 +15,8 @@ class ContactController < ApplicationController
     elsif subject.blank?
       flash[:alert] = I18n.t('form.messages.no_subject')
     else
-      flash[:notice] = I18n.t('contact.messages.message_sent')
+      flash[:notice] = I18n.t('contact.messages.sent')
+      ContactMailer.contact_email(email, name, subject, message)
     end
     redirect_to contact_path
   end
