@@ -1,3 +1,5 @@
+@import "variables";
+
 @mixin fancy-links {
   a, a:visited {
     font-size: 1em;
@@ -11,6 +13,13 @@
     color: white;
   }
 }
+
+@mixin fancy-links-blue-haze {
+  a, a:visited {
+    color: $blue_haze;
+  }
+}
+
 @mixin bi-btts {
   button.bi {
     width: 2em;
@@ -18,3 +27,21 @@
     border-radius: 50%;
   }
 }
+
+.fancy-link {
+  @include fancy-links
+}
+
+.fancy-link.colored {
+  @include fancy-links-blue-haze;
+}
+
+.darkmode .fancy-link {
+  @include fancy-links-darkmode;
+}
+
+.darkmode .fancy-link.colored {
+  @include fancy-links-blue-haze;
+}
+
+

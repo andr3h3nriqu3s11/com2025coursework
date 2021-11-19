@@ -30,6 +30,14 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+
+  application:
+    header:
+      home: 'Home'
+      contact: 'Contact'
+      login: 'Login'
+
+
   form:
     message: "Message"
     enter_message: "Enter Message"
@@ -61,6 +69,19 @@ en:
       subtitle: "Send us a message!"
     messages:
       sent: "The message was sent successfully we will contact you as soon as possible"
+
+  devise:
+    form:
+      login: 'Login'
+      no_login: "Don't have an account? Click here to create a new one"
+      have_account: 'Already have an account?'
+      signup: 'Signup'
+    sessions:
+      new:
+        login_title: 'Already have an account?'
+    registrations:
+      new:
+        title: 'Create your account'
 
   email:
     support: "support@andr3h3nriqu3s.com"

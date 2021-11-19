@@ -1,0 +1,23 @@
+=render "application/header"
+
+%div.center
+  %h1= t('.login_title')
+
+  = form_for resource, as: resource_name, url: session_path(resource_name),:html => { class: "center" } do |f|
+    %div
+      = f.label :email
+      = f.email_field :email, autofocus: true, autocomplete: "email"
+
+    %div
+      = f.label :password
+      = f.email_field :password, autofocus: true, autocomplete: "email"
+
+    - if devise_mapping.rememberable?
+      %div.sameline
+        = f.check_box :remember_me
+        = f.label :remember_me
+
+    %div.fancy-link.colored.margin-bottom-s
+      = link_to t('devise.form.no_login'), new_user_registration_path
+
+    = f.submit t('devise.form.login')

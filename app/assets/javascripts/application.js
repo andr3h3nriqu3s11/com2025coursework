@@ -19,12 +19,7 @@
 
 var darkmode = false;
 
-$(document).ready(preStartup);
-
-function preStartup() {
-    $(document).on('turbolinks:load', startup);
-    startup();
-}
+$(document).on('turbolinks:load', startup);
 
 function setDarkMode() {
     if (darkmode) {

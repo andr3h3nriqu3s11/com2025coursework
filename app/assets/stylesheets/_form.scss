@@ -34,4 +34,15 @@ form {
     padding: 0.6em;
     font-size: 1em;
   }
+
+  .sameline {
+    input {
+      display: inline;
+      width: auto;
+    }
+    label {
+      display: inline;
+    }
+  }
+
 }
