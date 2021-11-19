@@ -1,0 +1,57 @@
+@import 'generic_styles';
+
+header {
+  padding: 10px 10px;
+  height: 50px;
+  width: calc(100vw - 20px);
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  font-size: 22px;
+  transition: all 0.5s;
+
+  @include fancy-links;
+  @include bi-btts;
+
+  p,a,ul {
+    margin: 0px;
+  }
+
+  ul {
+    padding-right: 10px;
+    list-style-type: none;
+  }
+
+  button {
+    border: none;
+    outline: none;
+    background: none;
+    transition: all 0.5s;
+  }
+
+  button:hover {
+    background: #706f6f;
+    border-radius: 50%;
+    color: white;
+  }
+
+}
+
+body.darkmode header {
+    background-color: #464646;
+    @include fancy-links-darkmode;
+    button {
+      color: white;
+    }
+
+    button:hover {
+      background: #8a8a8a;
+      color: black;
+    }
+}
+
+header.floating {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}

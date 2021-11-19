@@ -15,3 +15,32 @@
 //= require turbolinks
 //= require jquery3
 //= require_tree .
+
+
+var darkmode = false;
+
+$(document).ready(preStartup);
+
+function preStartup() {
+    $(document).on('turbolinks:load', startup);
+    startup();
+}
+
+function setDarkMode() {
+    if (darkmode) {
+        $(document.body).addClass('darkmode');
+    } else {
+        $(document.body).removeClass('darkmode');
+    }
+    localStorage.setItem('darkmode', darkmode ? '1' : '0');
+}
+
+function startup() {
+    darkmode = localStorage.getItem('darkmode') === '1' ? true : false;
+    setDarkMode();
+    $('#darkmodetoggle').click(function () {
+        console.log(darkmode);
+        darkmode = !darkmode;
+        setDarkMode();
+    });
+}
