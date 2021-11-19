@@ -1,4 +1,24 @@
 =render 'header'
 =render 'notice'
 
-%h1 Contact
+%div.center
+  %h1= t('.title')
+  %h2= t('.subtitle')
+  = form_tag contact_path, method: :post, class: "center" do
+    %div
+      = label_tag :name, t('form.name')
+      = text_field_tag :name, '', title: t('form.enter_name'), require: true
+
+    %div
+      = label_tag :email, t('form.email')
+      = text_field_tag :email, '', title: t('form.enter_email'), require: true
+
+    %div
+      = label_tag :subject, t('form.subject')
+      = text_field_tag :subject, '', title: t('form.enter_subject'), require: true
+
+    %div
+      = label_tag :message, t('form.message')
+      = text_area_tag :message, '', title: t('form.enter_message'), require: true
+
+    = submit_tag t('form.send')

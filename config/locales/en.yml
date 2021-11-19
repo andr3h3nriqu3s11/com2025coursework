@@ -30,4 +30,25 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  form:
+    message: "Message"
+    enter_message: "Enter Message"
+
+    name: "Name"
+    enter_name: "Enter Name"
+
+    subject: "Subject"
+    enter_subject: "Enter Subject"
+
+    email: "Email"
+    enter_email: "Enter Email"
+
+    submit: "Submit"
+    send: "Send"
+
+  contact:
+    contact:
+      title: "Any Question?"
+      subtitle: "Send us a message!"
+
   hello: "Hello world"

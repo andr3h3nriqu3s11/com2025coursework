@@ -13,8 +13,9 @@
  *= require_tree .
  *= require_self
  */
-//@import "header";
 @use "header";
+@use "generic";
+@use "form";
 /*
   Bootstrap icons
  */
