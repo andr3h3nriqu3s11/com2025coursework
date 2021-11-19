@@ -46,9 +46,24 @@ en:
     submit: "Submit"
     send: "Send"
 
+    example:
+      text: 'Example'
+      email: 'example@example.example'
+
+    messages:
+      no_email: 'Please fill the email'
+      no_name: 'Please fill the name'
+      no_subject: 'Please fill the subject'
+
   contact:
     contact:
       title: "Any Question?"
       subtitle: "Send us a message!"
+    messages:
+      sent: "The message was sent successfully we will contact you as soon as possible"
+
+  email:
+    support: "support@andr3h3nriqu3s.com"
+    no_reply: "no-reply@andr3h3nriqu3s.com"
 
   hello: "Hello world"

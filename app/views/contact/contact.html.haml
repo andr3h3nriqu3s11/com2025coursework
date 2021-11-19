@@ -1,24 +1,24 @@
 =render 'header'
-=render 'notice'
 
 %div.center
   %h1= t('.title')
   %h2= t('.subtitle')
+  =render 'notice'
   = form_tag contact_path, method: :post, class: "center" do
     %div
       = label_tag :name, t('form.name')
-      = text_field_tag :name, '', title: t('form.enter_name'), require: true
+      = text_field_tag :name, '', title: t('form.enter_name'), required: true, placeholder: t('form.example.text')
 
     %div
       = label_tag :email, t('form.email')
-      = text_field_tag :email, '', title: t('form.enter_email'), require: true
+      = text_field_tag :email, '', title: t('form.enter_email'), required: true, placeholder: t('form.example.email')
 
     %div
       = label_tag :subject, t('form.subject')
-      = text_field_tag :subject, '', title: t('form.enter_subject'), require: true
+      = text_field_tag :subject, '', title: t('form.enter_subject'), required: true, placeholder: t('form.example.text')
 
     %div
       = label_tag :message, t('form.message')
-      = text_area_tag :message, '', title: t('form.enter_message'), require: true
+      = text_area_tag :message, '', title: t('form.enter_message'), required: true, placeholder: t('form.example.text'), maxlength: 200
 
-    = submit_tag t('form.send')
+    = submit_tag t('form.send'), remote: true

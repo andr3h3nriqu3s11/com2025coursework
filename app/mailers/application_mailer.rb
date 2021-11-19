@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'from@example.com'
+  default from: I18n.t('email.no_reply')
   layout 'mailer'
 end
