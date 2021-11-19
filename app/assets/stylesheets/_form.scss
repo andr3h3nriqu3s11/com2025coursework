@@ -1,3 +1,5 @@
+@import "variables";
+
 form {
   label {
     display: block;
@@ -7,17 +9,23 @@ form {
     display: block;
     padding: 0.4em;
     border-radius: 5px;
-    border: none;
     margin-bottom: 1em;
     width: 25vw;
     outline: none;
+    border: 1px solid grey;
+    background-color: white;
+  }
+
+  .darkmode input,
+  .darkmode textarea {
+    border: none;
   }
 
   textarea {
     min-height: 5em;
   }
 
-  input:focus, textarea {
+  input:focus, textarea:focus {
     box-shadow: #4787fd 0 0 9px 1px;
   }
 
