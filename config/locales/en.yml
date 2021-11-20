@@ -36,6 +36,8 @@ en:
       home: 'Home'
       contact: 'Contact'
       login: 'Login'
+      logoff: 'Logoff'
+      toggledarkmode: 'Toggle Dark Mode'
 
 
   form:

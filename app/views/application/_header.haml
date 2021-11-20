@@ -3,5 +3,12 @@
   %div
   %ul
     %li= link_to t(".contact"), contact_url
-    %li= link_to t(".login"), new_user_session_path
-  %button.bi.bi-moon#darkmodetoggle
+    - if not user_signed_in?
+      %li= link_to t(".login"), new_user_session_path
+    - else
+      -# %li= link_to(t(".logoff"), destroy_user_session_path, :method => :delete)
+      %li
+        =button_to destroy_user_session_path, :method => :delete, class: 'bi bi-box-arrow-right', title: t('.logoff') do
+          = ""
+
+  %button.bi.bi-moon#darkmodetoggle{title: t('.toggledarkmode')}
