@@ -1,4 +1,5 @@
 class WalletsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_wallet, only: %i[ show edit update destroy ]
 
   # GET /wallets or /wallets.json
@@ -8,6 +9,15 @@ class WalletsController < ApplicationController
 
   # GET /wallets/1 or /wallets/1.json
   def show
+    if (@fail_to_get_wallet)
+      redirect_to wallet404_path
+    end
+  end
+
+  def wallet404
+    @wallet = Wallet.new
+    @wallet.name = "No wallet found"
+    @wallet.icon = "emoji-frown"
   end
 
   # GET /wallets/new
@@ -17,6 +27,9 @@ class WalletsController < ApplicationController
 
   # GET /wallets/1/edit
   def edit
+    if (@fail_to_get_wallet)
+      redirect_to wallet404_path
+    end
   end
 
   # POST /wallets or /wallets.json
@@ -59,7 +72,15 @@ class WalletsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_wallet
-      @wallet = Wallet.find(params[:id])
+      wallet = Wallet.find(params[:id])
+      if wallet.user_id != current_user.id
+        @fail_to_get_wallet = true
+        return
+      end
+      @wallet = wallet
+      @fail_to_get_wallet = false
+    rescue
+      @fail_to_get_wallet = true
     end
 
     # Only allow a list of trusted parameters through.

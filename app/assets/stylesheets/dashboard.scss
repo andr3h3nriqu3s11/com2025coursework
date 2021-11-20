@@ -1,3 +1,15 @@
 // Place all the styles related to the Dashboard controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.wallet-icons-holder {
+  padding: 10px;
+  min-width: 60vw;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  row-gap: 40px;
+  column-gap: 10px;
+}
+

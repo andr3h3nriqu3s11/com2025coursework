@@ -89,3 +89,12 @@ function setupSignupPage() {
     });
 
 }
+
+
+// This function will change the path of the window to the desired location
+function moveTo(target) {
+    //console.log(target);
+    //window.location.href = target;
+    //window.location.reload();
+    window.location = target;
+}

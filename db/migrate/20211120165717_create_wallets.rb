@@ -3,6 +3,7 @@ class CreateWallets < ActiveRecord::Migration[5.2]
     create_table :wallets do |t|
       t.string :name, null: false
       t.string :icon, default: ""
+      t.string :color, default: ""
       t.integer :value, default: 0
       t.boolean :system, default: false
 

@@ -10,11 +10,13 @@ class Wallet < ApplicationRecord
   # Creates and saves the default wallets for a user
   scope :create_default_wallets, -> (user_id) do
     names = [ I18n.t("wallet.default.name1"), I18n.t("wallet.default.name2")]
-    names.each do |name|
+    icons = [ "currency-dollar", "box-arrow-in-left"]
+    names.each_with_index do |name, i|
       w = Wallet.new
       w.name = name
       w.system = true
       w.user_id = user_id
+      w.icon = icons[i]
       w.save
     end
   end

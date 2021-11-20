@@ -55,6 +55,7 @@ en:
 
     submit: "Submit"
     send: "Send"
+    delete: "Delete"
 
     example:
       text: 'Example'
@@ -95,5 +96,7 @@ en:
     default:
       name1: 'Expenses'
       name2: 'Incomings'
+    wallet404:
+      go_back: "Back to the dashboard"
 
   hello: "Hello world"

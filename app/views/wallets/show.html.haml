@@ -1,21 +1,14 @@
-%p#notice= notice
+=render "header"
 
-%p
-  %b Name:
-  = @wallet.name
-%p
-  %b Icon:
-  = @wallet.icon
-%p
-  %b Owner:
-  = @wallet.owner
-%p
-  %b Value:
-  = @wallet.value
-%p
-  %b System:
-  = @wallet.system
 
-= link_to 'Edit', edit_wallet_path(@wallet)
-\|
-= link_to 'Back', wallets_path
+%div.center
+  = render 'notice'
+  = render 'wallets/icon', wallet: @wallet, noclick: true
+  %p
+    %b Value:
+    = @wallet.value
+
+  - if not @wallet.system
+    %button= t('form.delete')
+
+  =render "linkdash"

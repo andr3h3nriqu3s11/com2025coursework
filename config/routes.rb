@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :wallets
   get 'dashboard/dashboard'
   root 'home#home'
 
@@ -7,6 +6,11 @@ Rails.application.routes.draw do
   post 'contact' => 'contact#submit'
 
   get 'dashboard' => 'dashboard#dashboard'
+
+  #Wallet related
+  resources :wallets
+  get '/wallet404' => 'wallets#wallet404'
+
 
   devise_for  :users,
               :path => '',

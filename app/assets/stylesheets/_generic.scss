@@ -1,8 +1,33 @@
+@import "generic_styles";
+
 .center {
   display: grid;
   place-items: center;
 }
 
+.fullpage {
+  width: 100vw;
+  height: 100vh;
+}
+
+.text-center {
+  text-align: center;
+}
+
 .margin-bottom-s {
   margin-bottom: 5px;
 }
+
+.fancy-link {
+  @include fancy-links;
+}
+.darkmode .fancy-link {
+  @include fancy-links-darkmode;
+}
+
+.fancy-link.blue-haze,
+.darkmode .fancy-link.blue-haze {
+  @include fancy-links-blue-haze;
+}
+
+
