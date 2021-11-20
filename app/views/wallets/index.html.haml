@@ -1,0 +1,29 @@
+%h1 Listing wallets
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Icon
+      %th Owner
+      %th Value
+      %th System
+      %th
+      %th
+      %th
+
+  %tbody
+    - @wallets.each do |wallet|
+      %tr
+        %td= wallet.name
+        %td= wallet.icon
+        %td= wallet.owner
+        %td= wallet.value
+        %td= wallet.system
+        %td= link_to 'Show', wallet
+        %td= link_to 'Edit', edit_wallet_path(wallet)
+        %td= link_to 'Destroy', wallet, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Wallet', new_wallet_path

@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @wallet.name
+%p
+  %b Icon:
+  = @wallet.icon
+%p
+  %b Owner:
+  = @wallet.owner
+%p
+  %b Value:
+  = @wallet.value
+%p
+  %b System:
+  = @wallet.system
+
+= link_to 'Edit', edit_wallet_path(@wallet)
+\|
+= link_to 'Back', wallets_path

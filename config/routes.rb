@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :wallets
   get 'dashboard/dashboard'
   root 'home#home'
 
