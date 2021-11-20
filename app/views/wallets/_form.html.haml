@@ -1,4 +1,4 @@
-= form_for @wallet do |f|
+= form_for @wallet, html: {class: "center"} do |f|
   - if @wallet.errors.any?
     #error_explanation
       %h2= "#{pluralize(@wallet.errors.count, "error")} prohibited this wallet from being saved:"
@@ -6,17 +6,13 @@
         - @wallet.errors.full_messages.each do |message|
           %li= message
 
-  .field
+  %div
     = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :icon
-    = f.text_field :icon
-  .field
-    = f.label :value
-    = f.number_field :value
-  .field
-    = f.label :system
-    = f.check_box :system
-  .actions
-    = f.submit 'Save'
+    = f.text_field :name, id: "wallet_form_name", maxlength: 50
+
+  -# TODO: change the icon
+  -#%div
+  -#  = f.label :icon
+  -#  = f.text_field :icon
+
+  = f.submit 'Save'

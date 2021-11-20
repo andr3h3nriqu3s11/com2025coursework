@@ -8,8 +8,8 @@ one:
   system: false
 
 two:
-  name: MyString
+  name: MyStringA
   icon: MyString
-  user_id: 1
+  user_id: 0
   value: 1
   system: true

@@ -40,6 +40,13 @@ function startup() {
     });
 
     setupSignupPage();
+    setupCreateNewWallet();
+}
+
+function setupCreateNewWallet() {
+    $("#wallet_form_name").on('input', function () {
+        $(".icon-wallet-name").html($(this).val());
+    });
 }
 
 function setupSignupPage() {

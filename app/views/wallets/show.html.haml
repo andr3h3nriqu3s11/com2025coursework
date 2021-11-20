@@ -9,6 +9,9 @@
     = @wallet.value
 
   - if not @wallet.system
-    %button= t('form.delete')
+    %div.naked-btt
+      = button_to wallet_path(@wallet), :method => :delete, class: 'rounded big-font' do
+        %span.bi.bi-trash
+        %span= t('form.delete')
 
   =render "linkdash"

@@ -11,6 +11,8 @@ header {
   transition: all 0.5s;
 
   @include fancy-links;
+
+  @include naked-btt;
   @include bi-btts;
 
   p,a,ul {
@@ -27,19 +29,6 @@ header {
   }
   li {
     display: block;
-  }
-
-  button {
-    border: none;
-    outline: none;
-    background: none;
-    transition: all 0.5s;
-  }
-
-  button:hover {
-    background: #706f6f;
-    border-radius: 50%;
-    color: white;
   }
 
 }

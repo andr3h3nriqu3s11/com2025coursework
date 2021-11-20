@@ -28,6 +28,20 @@
   }
 }
 
+@mixin naked-btt {
+  button {
+    border: none;
+    outline: none;
+    background: none;
+    transition: all 0.5s;
+  }
+
+  button:hover {
+    background: #706f6f;
+    color: white;
+  }
+}
+
 .fancy-link {
   @include fancy-links
 }
@@ -44,4 +58,19 @@
   @include fancy-links-blue-haze;
 }
 
+.naked-btt {
+  @include naked-btt;
+}
+
+.naked-btt {
+  button {
+    color: black;
+  }
+}
+
+.darkmode .naked-btt {
+  button {
+    color: white;
+  }
+}
 

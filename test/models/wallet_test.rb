@@ -1,12 +1,11 @@
 require 'test_helper'
 
 class WalletTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
-  #
-  #
-  #
+
+  setup do
+    @user = users(:one)
+    @user1 = users(:two)
+  end
 
   test "Should not create no user_id, no name" do
     wallet = Wallet.new
@@ -28,15 +27,39 @@ class WalletTest < ActiveSupport::TestCase
   test "Should not create invalid user_id" do
     wallet = Wallet.new
     wallet.name = "Name"
-    wallet.user_id = User.last.id + 1
+    wallet.user_id = -1
     refute wallet.save
   end
 
   test "Should create" do
     wallet = Wallet.new
     wallet.name = "Name"
-    wallet.user_id = User.last.id
+    wallet.user_id = @user.id
     assert wallet.save
+  end
+
+  test "Should not create 2 with the same name for the same user" do
+    wallet = Wallet.new
+    wallet.name = "Name"
+    wallet.user_id = @user.id
+    assert wallet.save
+
+    wallet1 = Wallet.new
+    wallet1.name = "Name"
+    wallet1.user_id = @user.id
+    refute wallet1.save
+  end
+
+  test "Should create 2 with the same name for different users" do
+    wallet = Wallet.new
+    wallet.name = "Name"
+    wallet.user_id = @user.id
+    assert wallet.save
+
+    wallet1 = Wallet.new
+    wallet1.name = "Name"
+    wallet1.user_id = @user1.id
+    assert wallet1.save
   end
 
 end

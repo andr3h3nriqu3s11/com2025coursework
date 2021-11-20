@@ -4,6 +4,13 @@ class WalletsController < ApplicationController
 
   # GET /wallets or /wallets.json
   def index
+
+    # TODO: User premissions
+    # TODO: replace with is admin or similar
+    if true
+      redirect_to dashboard_url
+      return
+    end
     @wallets = Wallet.all
   end
 
@@ -29,12 +36,22 @@ class WalletsController < ApplicationController
   def edit
     if (@fail_to_get_wallet)
       redirect_to wallet404_path
+      return
+    end
+    if @wallet.system
+      flash[:notice] = I18n.t("wallet.messages.can_not_be_changed")
+      redirect_to wallet_path(@wallet)
+      return
     end
   end
 
   # POST /wallets or /wallets.json
   def create
     @wallet = Wallet.new(wallet_params)
+
+    if @wallet.user_id.blank?
+      @wallet.user_id = current_user.id
+    end
 
     respond_to do |format|
       if @wallet.save
@@ -62,9 +79,21 @@ class WalletsController < ApplicationController
 
   # DELETE /wallets/1 or /wallets/1.json
   def destroy
+
+    if (@fail_to_get_wallet)
+      redirect_to wallet404_path
+      return
+    end
+
+    if @wallet.system
+      flash[:notice] = I18n.t("wallet.messages.can_not_be_changed")
+      redirect_to wallet_path(@wallet)
+      return
+    end
+
     @wallet.destroy
     respond_to do |format|
-      format.html { redirect_to wallets_url, notice: "Wallet was successfully destroyed." }
+      format.html { redirect_to dashboard_url, notice: "Wallet was successfully destroyed." }
       format.json { head :no_content }
     end
   end

@@ -96,7 +96,14 @@ en:
     default:
       name1: 'Expenses'
       name2: 'Incomings'
+    messages:
+          can_not_be_changed: 'This Wallet is a system wallet and can not be changed'
     wallet404:
       go_back: "Back to the dashboard"
+
+  dashboard:
+    dashboard:
+      wallets: "Wallets"
+      new_wallet: "Add New Wallet"
 
   hello: "Hello world"

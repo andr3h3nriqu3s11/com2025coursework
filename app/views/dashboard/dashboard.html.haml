@@ -2,9 +2,15 @@
 
 %div.center
 
-  %div.wallet-icons-holder
-    - @wallets.each do |w|
-      =render "wallets/icon", wallet: w, noclick: false
+  %div.wallets
+    %div.flex.space-between.align-center.rails-btt-center.naked-btt
+      %h1.no-margin= t(".wallets")
+      = button_to new_wallet_path, class: "rounded-small big-font", :method => :get do
+        %span.bi.bi-plus
+        =t(".new_wallet")
+    %div.wallet-icons-holder
+      - @wallets.each do |w|
+        =render "wallets/icon", wallet: w, noclick: false
 
   %h1 Dashboard#dashboard
   %p Find me in app/views/dashboard/dashboard.html.haml

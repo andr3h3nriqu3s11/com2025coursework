@@ -14,8 +14,39 @@
   text-align: center;
 }
 
+.flex {
+  display: flex;
+}
+
+.flex.space-between {
+  justify-content: space-between;
+}
+
+.flex.align-center {
+  align-content: center;
+}
+
+.flex.rails-btt-center {
+  form {
+    display: grid;
+    place-items: center;
+  }
+}
+
+.no-margin {
+  margin: 0px;
+}
+
+.rounded-small {
+  border-radius: 40px;
+}
+
 .margin-bottom-s {
   margin-bottom: 5px;
+}
+
+.big-font {
+  font-size: 20px;
 }
 
 .fancy-link {
