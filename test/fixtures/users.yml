@@ -7,9 +7,11 @@
 one:
   email: "test1@test.test"
   encrypted_password: nothing
+  id: 0
 # column: value
 #
 two:
   email: "test2@test.test"
   encrypted_password: nothing
+  id: 1
 # column: value

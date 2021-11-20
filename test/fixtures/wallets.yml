@@ -3,13 +3,13 @@
 one:
   name: MyString
   icon: MyString
-  owner: 
+  user_id: 0
   value: 1
   system: false
 
 two:
   name: MyString
   icon: MyString
-  owner: 
+  user_id: 1
   value: 1
-  system: false
+  system: true
