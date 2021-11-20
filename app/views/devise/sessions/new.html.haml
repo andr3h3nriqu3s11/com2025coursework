@@ -3,14 +3,16 @@
 %div.center
   %h1= t('.login_title')
 
+  =render 'application/notice'
+
   = form_for resource, as: resource_name, url: session_path(resource_name),:html => { class: "center" } do |f|
     %div
       = f.label :email
-      = f.email_field :email, autofocus: true, autocomplete: "email"
+      = f.email_field :email, autofocus: true, autocomplete: "email", required: true
 
     %div
       = f.label :password
-      = f.email_field :password, autofocus: true, autocomplete: "email"
+      = f.password_field :password, required: true
 
     - if devise_mapping.rememberable?
       %div.sameline
