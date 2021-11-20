@@ -2,9 +2,9 @@ class CreateWallets < ActiveRecord::Migration[5.2]
   def change
     create_table :wallets do |t|
       t.string :name, null: false
-      t.string :icon
-      t.integer :value
-      t.boolean :system
+      t.string :icon, default: ""
+      t.integer :value, default: 0
+      t.boolean :system, default: false
 
       #t.User :owner
       t.references :user, foreign_key: true, null: false

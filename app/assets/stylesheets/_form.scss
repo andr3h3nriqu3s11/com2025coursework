@@ -25,6 +25,13 @@ form {
     min-height: 5em;
   }
 
+  /*
+    Form fail does not have priority over foucus
+   */
+  .form-fail {
+    box-shadow: $red_haze 0 0 9px 1px;
+  }
+
   input:focus, textarea:focus {
     box-shadow: $blue_haze 0 0 9px 1px;
   }
@@ -43,6 +50,10 @@ form {
     label {
       display: inline;
     }
+  }
+
+  .danger {
+    color: $red_haze;
   }
 
 }

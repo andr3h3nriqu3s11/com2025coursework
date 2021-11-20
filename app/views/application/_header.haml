@@ -1,5 +1,10 @@
 %header
-  %p= link_to t(".home"), root_url
+  - if not user_signed_in?
+    %p= link_to t(".home"), root_url
+  - else
+    -# To be a bit more efficient
+    %p= link_to t(".home"), dashboard_url
+
   %div
   %ul
     %li= link_to t(".contact"), contact_url

@@ -26,9 +26,9 @@ ActiveRecord::Schema.define(version: 2021_11_20_165717) do
 
   create_table "wallets", force: :cascade do |t|
     t.string "name", null: false
-    t.string "icon"
-    t.integer "value"
-    t.boolean "system"
+    t.string "icon", default: ""
+    t.integer "value", default: 0
+    t.boolean "system", default: false
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

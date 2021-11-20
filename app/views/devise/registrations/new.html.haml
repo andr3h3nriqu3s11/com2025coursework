@@ -5,7 +5,7 @@
 
   =render "application/notice"
 
-  = form_for resource, as: resource_name, url: registration_path(resource_name),:html => { class: "center" } do |f|
+  = form_for resource, as: resource_name, url: registration_path(resource_name),:html => { class: "center", id: 'signupform' } do |f|
     %div
       = f.label :email
       = f.email_field :email, autofocus: true, autocomplete: "email", required: true
@@ -14,16 +14,18 @@
       = f.label :password
       - if @minimum_password_length
         = "#{@minimum_password_length} characters minimum"
-      = f.password_field :password, required: true
+      = f.password_field :password, required: true, id: "password"
+      %p#password_not_meat_minimum.danger{ hidden: true }= t(".password_not_meat_minimum")
 
     %div
       = f.label :password_confirmation
-      = f.password_field :password_confirmation, autocomplete: "new-password", required: true
+      = f.password_field :password_confirmation, autocomplete: "new-password", required: true, id: "password_repeat"
+      %p#password_not_match.danger{ hidden: true }= t(".password_not_match")
 
     %div.fancy-link.colored.margin-bottom-s
       = link_to t('devise.form.have_account'), new_user_session_path
 
-    = f.submit t('devise.form.signup')
+    = f.submit t('devise.form.signup'), remote: true, id: "submit_btt"
 
 
 -#<h2>Sign up</h2>

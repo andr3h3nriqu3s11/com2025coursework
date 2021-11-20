@@ -38,4 +38,54 @@ function startup() {
         darkmode = !darkmode;
         setDarkMode();
     });
+
+    setupSignupPage();
+}
+
+function setupSignupPage() {
+    $('#signupform')?.submit(function (e) {
+
+        console.log("test");
+        console.log($('#password').val(), $('#password_repeat').val())
+
+        let p1 = $('#password').val();
+
+        if (p1.length < 6) {
+            $('#submit_btt').disable = false;
+            e.preventDefault();
+        }
+
+        if (p1 != $('#password_repeat').val()) {
+            $('#submit_btt').disable = false;
+            e.preventDefault();
+        }
+    });
+
+    $('#password').change(function() {
+        let val = $(this).val();
+
+        if (val.length < 6) {
+            $(this).addClass("form-fail");
+            $('#password_not_meat_minimum').show();
+        } else {
+            $(this).removeClass("form-fail");
+            $('#password_not_meat_minimum').hide();
+        }
+
+    });
+
+    $('#password_repeat').change(function() {
+        let val = $(this).val();
+        let p1 = $('#password').val();
+
+        if (p1 != val) {
+            $(this).addClass("form-fail");
+            $('#password_not_match').show();
+        } else {
+            $(this).removeClass("form-fail");
+            $('#password_not_match').hide();
+        }
+
+    });
+
 }
