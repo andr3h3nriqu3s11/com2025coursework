@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Description:
+  = @transaction.description
+%p
+  %b Origin:
+  = @transaction.origin
+%p
+  %b Destination:
+  = @transaction.destination
+%p
+  %b Value:
+  = @transaction.value
+
+= link_to 'Edit', edit_transaction_path(@transaction)
+\|
+= link_to 'Back', transactions_path
