@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :trasanctions
   get 'dashboard/dashboard'
   root 'home#home'
 
