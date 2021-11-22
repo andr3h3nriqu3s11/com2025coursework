@@ -39,7 +39,6 @@ en:
       logoff: 'Logoff'
       toggledarkmode: 'Toggle Dark Mode'
 
-
   form:
     message: "Message"
     enter_message: "Enter Message"
@@ -96,8 +95,10 @@ en:
     default:
       name1: 'Expenses'
       name2: 'Incomings'
+      name3: 'Net Worth'
     messages:
-          can_not_be_changed: 'This Wallet is a system wallet and can not be changed'
+      can_not_be_changed: 'This Wallet is a system wallet and can not be changed'
+      can_only_create_for_yourself: 'You can only create a wallet for yourself'
     wallet404:
       go_back: "Back to the dashboard"
 

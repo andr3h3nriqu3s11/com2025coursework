@@ -51,6 +51,14 @@ class WalletsController < ApplicationController
 
     if @wallet.user_id.blank?
       @wallet.user_id = current_user.id
+    # TODO: admin
+    elsif @wallet.user_id != current_user.id
+      flash[:alert] = I18n.t("wallet.messages.can_only_create_for_yourself")
+      respond_to do |format|
+        format.html { render :new, status: :forbidden }
+        format.json { render json: @wallet.errors, status: :forbidden }
+      end
+      return
     end
 
     respond_to do |format|
@@ -66,6 +74,11 @@ class WalletsController < ApplicationController
 
   # PATCH/PUT /wallets/1 or /wallets/1.json
   def update
+    if @fail_to_get_wallet
+      redirect_to wallet404_path
+      return
+    end
+
     respond_to do |format|
       if @wallet.update(wallet_params)
         format.html { redirect_to @wallet, notice: "Wallet was successfully updated." }
@@ -102,6 +115,7 @@ class WalletsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_wallet
       wallet = Wallet.find(params[:id])
+      #TODO: admin
       if wallet.user_id != current_user.id
         @fail_to_get_wallet = true
         return
@@ -114,6 +128,6 @@ class WalletsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def wallet_params
-      params.require(:wallet).permit(:name, :icon, :owner, :value, :system)
+      params.require(:wallet).permit(:name, :icon, :user_id, :value, :system)
     end
 end
