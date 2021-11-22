@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Description:
+  = @trasanction.description
+%p
+  %b Origin:
+  = @trasanction.origin
+%p
+  %b Destination:
+  = @trasanction.destination
+%p
+  %b Value:
+  = @trasanction.value
+
+= link_to 'Edit', edit_trasanction_path(@trasanction)
+\|
+= link_to 'Back', trasanctions_path

@@ -1,0 +1,22 @@
+= form_for @trasanction do |f|
+  - if @trasanction.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@trasanction.errors.count, "error")} prohibited this trasanction from being saved:"
+      %ul
+        - @trasanction.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :description
+    = f.text_field :description
+  .field
+    = f.label :origin
+    = f.text_field :origin
+  .field
+    = f.label :destination
+    = f.text_field :destination
+  .field
+    = f.label :value
+    = f.number_field :value
+  .actions
+    = f.submit 'Save'

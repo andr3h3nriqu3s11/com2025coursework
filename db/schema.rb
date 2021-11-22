@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_20_165717) do
+ActiveRecord::Schema.define(version: 2021_11_22_200553) do
+
+  create_table "trasanctions", force: :cascade do |t|
+    t.string "description"
+    t.integer "value", null: false
+    t.integer "origin_id", null: false
+    t.integer "destination_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["destination_id"], name: "index_trasanctions_on_destination_id"
+    t.index ["origin_id"], name: "index_trasanctions_on_origin_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

@@ -1,0 +1,27 @@
+%h1 Listing trasanctions
+
+%table
+  %thead
+    %tr
+      %th Description
+      %th Origin
+      %th Destination
+      %th Value
+      %th
+      %th
+      %th
+
+  %tbody
+    - @trasanctions.each do |trasanction|
+      %tr
+        %td= trasanction.description
+        %td= trasanction.origin
+        %td= trasanction.destination
+        %td= trasanction.value
+        %td= link_to 'Show', trasanction
+        %td= link_to 'Edit', edit_trasanction_path(trasanction)
+        %td= link_to 'Destroy', trasanction, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Trasanction', new_trasanction_path
