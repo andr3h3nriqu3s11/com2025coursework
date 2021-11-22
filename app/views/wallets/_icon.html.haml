@@ -1,4 +1,4 @@
-%div.wallet-icon{class: wallet.color.blank? ? 'default-background' : '', style: "color: white; #{wallet.color.blank? ? '' : "background-color: #{wallet.color}"}", onclick: (noclick == false) ? "moveTo('/wallets/#{wallet.id}')" : ""  }
+%div.wallet-icon{class: "#{wallet.color.blank? ? 'default-background' : ''} #{noclick == false ? 'cursor-click' : ''}", style: "color: white; #{wallet.color.blank? ? '' : "background-color: #{wallet.color}"}", onclick: (noclick == false) ? "moveTo('/wallets/#{wallet.id}')" : ""  }
   - if wallet.icon.blank?
     %div.bi.bi-wallet
   -else
