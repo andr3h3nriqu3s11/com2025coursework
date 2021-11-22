@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2021_11_22_202041) do
 
   create_table "transactions", force: :cascade do |t|
     t.string "description"
-    t.integer "value"
+    t.decimal "value", precision: 15
     t.integer "origin_id", null: false
     t.integer "destination_id", null: false
     t.datetime "created_at", null: false

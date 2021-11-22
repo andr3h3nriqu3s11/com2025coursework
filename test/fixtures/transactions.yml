@@ -2,12 +2,12 @@
 
 one:
   description: MyString
-  origin: 
-  destination: 
+  origin: 1
+  destination: 2
   value: 1
 
 two:
   description: MyString
-  origin: 
-  destination: 
+  origin: 1
+  destination: 2
   value: 1

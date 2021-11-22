@@ -2,7 +2,7 @@ class CreateTransactions < ActiveRecord::Migration[5.2]
   def change
     create_table :transactions do |t|
       t.string :description
-      t.integer :value
+      t.decimal :value, :precision => 15
 
 
       #t.Wallet :origin

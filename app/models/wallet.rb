@@ -1,4 +1,7 @@
 class Wallet < ApplicationRecord
+
+  has_many :transactions
+
   belongs_to :user
   #Name is only unique for each user id
   validates :name, uniqueness: { scope: :user_id }
