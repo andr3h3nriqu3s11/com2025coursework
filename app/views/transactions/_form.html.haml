@@ -1,4 +1,4 @@
-= form_for @transaction do |f|
+= form_for @transaction, html: {class: 'center', id: 'transaction_form'} do |f|
   - if @transaction.errors.any?
     #error_explanation
       %h2= "#{pluralize(@transaction.errors.count, "error")} prohibited this transaction from being saved:"
@@ -6,17 +6,20 @@
         - @transaction.errors.full_messages.each do |message|
           %li= message
 
-  .field
+  %div
+    = f.label :origin
+    = f.collection_select :origin_id, Wallet.by_user(current_user), :id, :name
+
+  %div
+    = f.label :destination
+    = f.collection_select :destination_id, Wallet.by_user(current_user), :id, :name
+    %p#destination_same.danger{hidden: true}= t("transaction.form.destination_same")
+
+  %div
     = f.label :description
     = f.text_field :description
-  .field
-    = f.label :origin
-    = f.text_field :origin
-  .field
-    = f.label :destination
-    = f.text_field :destination
-  .field
+  %div
     = f.label :value
-    = f.number_field :value
-  .actions
-    = f.submit 'Save'
+    = f.number_field :value, required: true
+
+  = f.submit t("form.create"), remote:true, id: 'submit_btt'

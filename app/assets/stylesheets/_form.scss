@@ -5,7 +5,7 @@ form {
     display: block;
     margin-bottom: 0.2em;
   }
-  input, textarea {
+  input, textarea, select {
     display: block;
     padding: 0.4em;
     border-radius: 5px;
@@ -17,7 +17,8 @@ form {
   }
 
   .darkmode input,
-  .darkmode textarea {
+  .darkmode textarea,
+  .darkmode select {
     border: none;
   }
 
@@ -32,7 +33,7 @@ form {
     box-shadow: $red_haze 0 0 9px 1px;
   }
 
-  input:focus, textarea:focus {
+  input:focus, textarea:focus, select:focus {
     box-shadow: $blue_haze 0 0 9px 1px;
   }
 

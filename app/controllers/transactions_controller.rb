@@ -1,5 +1,6 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /transactions or /transactions.json
   def index
@@ -21,6 +22,7 @@ class TransactionsController < ApplicationController
 
   # POST /transactions or /transactions.json
   def create
+
     @transaction = Transaction.new(transaction_params)
 
     respond_to do |format|
@@ -64,6 +66,7 @@ class TransactionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def transaction_params
-      params.require(:transaction).permit(:description, :origin, :destination, :value)
+      params.require(:transaction).permit(:description, :origin_id, :destination_id, :value)
     end
+
 end

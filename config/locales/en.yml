@@ -55,6 +55,7 @@ en:
     submit: "Submit"
     send: "Send"
     delete: "Delete"
+    create: 'Create'
 
     example:
       text: 'Example'
@@ -86,6 +87,10 @@ en:
         title: 'Create your account'
         password_not_meat_minimum: 'Password does not have the minimum number of characters'
         password_not_match: 'Passwords must match'
+
+  transaction:
+    form:
+      destination_same: "The Origin and the Destination Wallet need to be different"
 
   email:
     support: "support@andr3h3nriqu3s.com"

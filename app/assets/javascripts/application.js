@@ -41,6 +41,7 @@ function startup() {
 
     setupSignupPage();
     setupCreateNewWallet();
+    setUpTransaction();
 }
 
 function setupCreateNewWallet() {
@@ -51,17 +52,11 @@ function setupCreateNewWallet() {
 
 function setupSignupPage() {
     $('#signupform')?.submit(function (e) {
-
-        console.log("test");
-        console.log($('#password').val(), $('#password_repeat').val())
-
         let p1 = $('#password').val();
-
         if (p1.length < 6) {
             $('#submit_btt').disable = false;
             e.preventDefault();
         }
-
         if (p1 != $('#password_repeat').val()) {
             $('#submit_btt').disable = false;
             e.preventDefault();
@@ -70,7 +65,6 @@ function setupSignupPage() {
 
     $('#password').change(function() {
         let val = $(this).val();
-
         if (val.length < 6) {
             $(this).addClass("form-fail");
             $('#password_not_meat_minimum').show();
@@ -78,13 +72,11 @@ function setupSignupPage() {
             $(this).removeClass("form-fail");
             $('#password_not_meat_minimum').hide();
         }
-
     });
 
     $('#password_repeat').change(function() {
         let val = $(this).val();
         let p1 = $('#password').val();
-
         if (p1 != val) {
             $(this).addClass("form-fail");
             $('#password_not_match').show();
@@ -92,11 +84,38 @@ function setupSignupPage() {
             $(this).removeClass("form-fail");
             $('#password_not_match').hide();
         }
-
     });
-
 }
 
+function setUpTransaction() {
+    let origin = "#transaction_origin_id";
+    let destination = "#transaction_destination_id";
+    $('#transaction_form').submit(function (e) {
+        if ($(origin).val() == $(destination).val()) {
+            $('#destination_same').show();
+            $(destination).addClass('form-fail');
+            // By this point for some reason the button is not disabled yet so this timeout
+            // will wait for the button to be disabled so it can reenable it again
+            setTimeout(() => {
+                document.getElementById('submit_btt').disabled = false;
+                //$('#submit_btt').disabled = false;
+            }, 100);
+            e.preventDefault();
+        } else {
+            $('#destination_same').hide();
+            $(destination).removeClass('form-fail');
+        }
+    });
+    $(destination).change(function () {
+        if ($(origin).val() == $(this).val()) {
+            $('#destination_same').show();
+            $(destination).addClass('form-fail');
+        } else {
+            $('#destination_same').hide();
+            $(destination).removeClass('form-fail');
+        }
+    });
+}
 
 // This function will change the path of the window to the desired location
 function moveTo(target) {

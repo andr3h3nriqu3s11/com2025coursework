@@ -1,20 +1,34 @@
 require 'test_helper'
 
 class TransactionsControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
+  setup do
+    @transaction = transactions(:one)
+
+    @user = users(:one)
+    @user2 = users(:two)
+  end
+
   # TODO
-  # setup do
-  #   @transaction = transactions(:one)
-  # end
-  #
   # test "should get index" do
   #   get transactions_url
   #   assert_response :success
   # end
   #
-  # test "should get new" do
-  #   get new_transaction_url
-  #   assert_response :success
-  # end
+
+  test "should not get new - no login" do
+    get new_transaction_url
+    assert_redirected_to new_user_session_url
+  end
+
+  test "should get new" do
+    sign_in @user
+    get new_transaction_url
+    assert_response :success
+    sign_out @user
+  end
+
   #
   # test "should create transaction" do
   #   assert_difference('Transaction.count') do
