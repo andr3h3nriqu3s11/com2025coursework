@@ -1,7 +1,10 @@
-%h1 Editing transaction
+=render 'header'
 
-= render 'form'
+%div.center
+  %h1 Editing transaction
 
-= link_to 'Show', @transaction
-\|
-= link_to 'Back', transactions_path
+  = render 'form'
+
+  %div.flex
+    = render "fancylinkblue", title: t("form.cancel"), link: transaction_url(@transaction)
+

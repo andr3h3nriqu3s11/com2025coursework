@@ -72,9 +72,14 @@ class TransactionsController < ApplicationController
       o = Wallet.by_id(@transaction.origin_id).first;
       d = Wallet.by_id(@transaction.destination_id).first;
 
-      if (o.user_id != current_user.id) and (d.user_id != current_user.id)
+      if (o.user_id != current_user.id)
+        @origin_not_owned = true
+      end
+      if (d.user_id != current_user.id)
+        @destination_not_owned = true
+      end
+      if @origin_not_owned and @destination_not_owned
         @transaction_not_found = true
-        @transaction = nil
       end
     rescue
       @transaction_not_found = true
