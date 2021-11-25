@@ -6,10 +6,10 @@ class CreateTransactions < ActiveRecord::Migration[5.2]
 
 
       #t.Wallet :origin
-      t.references :origin, foreign_key: true, null: false
+      t.references :origin, foreign_key: {to_table: :wallets}, null: false
 
       #t.Wallet :destination
-      t.references :destination, foreign_key: true, null: false
+      t.references :destination, foreign_key: {to_table: :wallets}, null: false
 
       t.timestamps
     end
