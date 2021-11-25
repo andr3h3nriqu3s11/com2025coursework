@@ -2,12 +2,18 @@
 
 one:
   description: MyString
-  origin: 1
-  destination: 2
+  origin_id: 1
+  destination_id: 2
   value: 1
 
 two:
   description: MyString
-  origin: 1
-  destination: 2
+  origin_id: 1
+  destination_id: 3
+  value: 1
+
+three:
+  description: MyString
+  origin_id: 3
+  destination_id: 1
   value: 1

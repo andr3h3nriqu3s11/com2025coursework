@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :transactions
   get 'dashboard/dashboard'
   root 'home#home'
 
@@ -11,6 +10,10 @@ Rails.application.routes.draw do
   #Wallet related
   resources :wallets
   get '/wallet404' => 'wallets#wallet404'
+
+  #Transaction related
+  resources :transactions
+  get '/transaction404' => 'transactions#transaction404'
 
 
   devise_for  :users,

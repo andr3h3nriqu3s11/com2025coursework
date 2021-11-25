@@ -9,6 +9,7 @@ class Wallet < ApplicationRecord
 
   scope :by_user_id, -> (user_id) { where(['user_id = ?', user_id]) }
   scope :by_user, -> (user) { by_user_id(user.id) }
+  scope :by_id, -> (id) { where(['id = ?', id]) }
 
   # Creates and saves the default wallets for a user
   scope :create_default_wallets, -> (user_id) do

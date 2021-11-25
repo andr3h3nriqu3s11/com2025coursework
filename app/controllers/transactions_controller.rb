@@ -9,6 +9,9 @@ class TransactionsController < ApplicationController
 
   # GET /transactions/1 or /transactions/1.json
   def show
+    if @transaction_not_found
+      redirect_to transaction404_url
+    end
   end
 
   # GET /transactions/new
@@ -58,10 +61,23 @@ class TransactionsController < ApplicationController
     end
   end
 
+  def transaction404
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_transaction
       @transaction = Transaction.find(params[:id])
+
+      o = Wallet.by_id(@transaction.origin_id).first;
+      d = Wallet.by_id(@transaction.destination_id).first;
+
+      if (o.user_id != current_user.id) and (d.user_id != current_user.id)
+        @transaction_not_found = true
+        @transaction = nil
+      end
+    rescue
+      @transaction_not_found = true
     end
 
     # Only allow a list of trusted parameters through.

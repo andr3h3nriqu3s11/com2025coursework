@@ -1,6 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1
   name: MyString
   icon: MyString
   user_id: 0
@@ -8,8 +9,17 @@ one:
   system: false
 
 two:
+  id: 2
   name: MyStringA
   icon: MyString
   user_id: 0
+  value: 1
+  system: true
+
+tree:
+  id: 3
+  name: MyStringA
+  icon: MyString
+  user_id: 1
   value: 1
   system: true
