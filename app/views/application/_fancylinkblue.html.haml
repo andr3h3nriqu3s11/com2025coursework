@@ -1,0 +1,8 @@
+%div.fancy-link.blue-haze
+  =link_to link, class: "fancy-link" do
+    %p.text-center
+      - if not defined?(left_icon) or not left_icon
+        %span.bi{class: defined?(icon) ? icon : "bi-arrow-left"}
+      %span= title
+      - if defined?(left_icon) and left_icon
+        %span.bi{class: defined?(icon) ? icon : "bi-arrow-left"}

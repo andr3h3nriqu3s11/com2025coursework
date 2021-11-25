@@ -58,6 +58,11 @@
   @include fancy-links-blue-haze;
 }
 
+.small-spacer {
+  width: 10px;
+  height: 2px;
+}
+
 .naked-btt {
   @include naked-btt;
 }

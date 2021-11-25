@@ -25,8 +25,6 @@ class TransactionsController < ApplicationController
 
     @transaction = Transaction.new(transaction_params)
 
-    puts params
-
     respond_to do |format|
       if @transaction.save
         format.html { redirect_to @transaction, notice: "Transaction was successfully created." }

@@ -56,6 +56,7 @@ en:
     send: "Send"
     delete: "Delete"
     create: 'Create'
+    edit: "Edit"
 
     example:
       text: 'Example'
@@ -65,6 +66,7 @@ en:
       no_email: 'Please fill the email'
       no_name: 'Please fill the name'
       no_subject: 'Please fill the subject'
+      go_back: "Back to the dashboard"
 
   contact:
     contact:
@@ -104,8 +106,6 @@ en:
     messages:
       can_not_be_changed: 'This Wallet is a system wallet and can not be changed'
       can_only_create_for_yourself: 'You can only create a wallet for yourself'
-    wallet404:
-      go_back: "Back to the dashboard"
 
   dashboard:
     dashboard:

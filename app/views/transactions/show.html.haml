@@ -1,18 +1,22 @@
-%p#notice= notice
+=render "header"
 
-%p
-  %b Description:
-  = @transaction.description
-%p
-  %b Origin:
-  = @transaction.origin
-%p
-  %b Destination:
-  = @transaction.destination
-%p
-  %b Value:
-  = @transaction.value
+%div.center
+  = render "notice"
 
-= link_to 'Edit', edit_transaction_path(@transaction)
-\|
-= link_to 'Back', transactions_path
+  %p
+    %b Description:
+    = @transaction.description
+  %p
+    %b Origin:
+    = @transaction.origin
+  %p
+    %b Destination:
+    = @transaction.destination
+  %p
+    %b Value:
+    = @transaction.value
+
+  %div.flex
+    = render "linkdash"
+    %div.small-spacer
+    = render "fancylinkblue", link: edit_transaction_path(@transaction), title: t("form.edit"), icon: "bi-arrow-right", left_icon: true

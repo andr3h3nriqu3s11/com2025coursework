@@ -1,5 +1,1 @@
-%div.fancy-link.blue-haze
-  =link_to dashboard_url, class: "fancy-link" do
-    %p.text-center
-      %span.bi.bi-arrow-left
-      %span= t(".go_back")
+=render "fancylinkblue", link: dashboard_url, title: t("form.message.go_back")
