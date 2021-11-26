@@ -1,0 +1,16 @@
+-if defined? header and header
+  %div.transactionLineItem{class: (defined?(editLink) and editLink) ?  "withLink" : ""}
+    %span=t(".origin")
+    %span="--------->"
+    %span=t(".destination")
+    %span=t(".description")
+    %span=t(".value")
+-else
+  %div.transactionLineItem{class: (defined?(editLink) and editLink) ?  "withLink" : ""}
+    %span=transaction.origin.name
+    %span="--------->"
+    %span=transaction.destination.name
+    %span=transaction.description
+    %span=transaction.value
+    - if defined?(editLink) and editLink
+      =render "fancylinkblue", left_icon: true, title: t("form.show_more"), link: transaction_url(transaction), icon: "bi-arrow-right"

@@ -12,5 +12,5 @@
       - @wallets.each do |w|
         =render "wallets/icon", wallet: w, noclick: false
 
-  %h1 Dashboard#dashboard
-  %p Find me in app/views/dashboard/dashboard.html.haml
+  =render "transactions/transactionsList", editLink: true
+

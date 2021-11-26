@@ -225,6 +225,5 @@ class WalletsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to dashboard_url
     sign_out @user
     @wallet.save
-
   end
 end

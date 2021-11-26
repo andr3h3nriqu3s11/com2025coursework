@@ -4,13 +4,17 @@ class TransactionsController < ApplicationController
 
   # GET /transactions or /transactions.json
   def index
-    @transactions = Transaction.all
+    #TODO
+    #Check if admin
+    #@transactions = Transaction.all
+    @transactions = Transaction.by_user(current_user)
   end
 
   # GET /transactions/1 or /transactions/1.json
   def show
     if @transaction_not_found
       redirect_to transaction404_url
+      return
     end
   end
 
@@ -21,6 +25,10 @@ class TransactionsController < ApplicationController
 
   # GET /transactions/1/edit
   def edit
+    if @transaction_not_found
+      redirect_to transaction404_url
+      return
+    end
   end
 
   # POST /transactions or /transactions.json
@@ -54,9 +62,22 @@ class TransactionsController < ApplicationController
 
   # DELETE /transactions/1 or /transactions/1.json
   def destroy
+
+    if @transaction_not_found
+      redirect_to transaction404_url
+      return
+    end
+
+    if @origin_not_owned
+      flash[:alert] = t("transaction.messages.origin not owned")
+      redirect_to transaction_url(@transaction)
+      return
+    end
+
+    origin_id = @transaction.origin.id;
     @transaction.destroy
     respond_to do |format|
-      format.html { redirect_to transactions_url, notice: "Transaction was successfully destroyed." }
+      format.html { redirect_to wallet_url(origin_id), notice: "Transaction was successfully destroyed." }
       format.json { head :no_content }
     end
   end

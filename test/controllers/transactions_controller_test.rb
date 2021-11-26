@@ -12,12 +12,18 @@ class TransactionsControllerTest < ActionDispatch::IntegrationTest
     @user2 = users(:two)
   end
 
-  # TODO
-  # test "should get index" do
-  #   get transactions_url
-  #   assert_response :success
-  # end
-  #
+  test "should not get index - no user" do
+    get transactions_url
+    assert_redirected_to new_user_session_url
+  end
+
+  test "should get index" do
+     sign_in @user
+     get transactions_url
+     assert_response :success
+     sign_out @user
+   end
+
 
   test "should not get new - no login" do
     get new_transaction_url
@@ -88,22 +94,85 @@ class TransactionsControllerTest < ActionDispatch::IntegrationTest
     sign_out @user
   end
 
-  #
-  # test "should get edit" do
-  #   get edit_transaction_url(@transaction)
-  #   assert_response :success
-  # end
+  test "should not get edit transaction - no login" do
+    get edit_transaction_url(@transaction)
+    assert_redirected_to new_user_session_url
+  end
+
+  test "should not get edit transaction - does not exist" do
+    sign_in @user
+    get edit_transaction_url(10000)
+    assert_redirected_to transaction404_url
+    sign_out @user
+  end
+
+  test "should not get edit transaction - wrong user" do
+    sign_in @user2
+    get edit_transaction_url(@transaction)
+    assert_redirected_to transaction404_url
+    sign_out @user2
+  end
+
+  test "should get edit transaction - at least one origin or destination" do
+    sign_in @user2
+    get edit_transaction_url(@transaction2)
+    assert_response :success
+    get edit_transaction_url(@transaction3)
+    assert_response :success
+    sign_out @user2
+  end
+
+  test "should get edit transaction" do
+    sign_in @user
+    get edit_transaction_url(@transaction)
+    assert_response :success
+    sign_out @user
+  end
+
+  test "should not destroy transaction - no user" do
+    delete transaction_url(@transaction)
+    assert_redirected_to new_user_session_url
+  end
+
+  test "should not destroy transaction - no user and not exists" do
+    delete transaction_url(-1)
+    assert_redirected_to new_user_session_url
+  end
+
+  test "should not destroy transaction - no not exists" do
+    sign_in @user
+    delete transaction_url(-1)
+    assert_redirected_to transaction404_url
+    sign_out @user
+  end
+
+  test "should not destroy transaction - wrong user" do
+    sign_in @user2
+    delete transaction_url(@transaction)
+    assert_redirected_to transaction404_url
+    sign_out @user2
+  end
+
+  test "should not destroy transaction - not origin" do
+    sign_in @user2
+    delete transaction_url(@transaction2)
+    assert_redirected_to transaction_url(@transaction2)
+    sign_out @user2
+  end
+
+  test "should destroy transaction" do
+    sign_in @user
+    assert_difference('Transaction.count', -1) do
+      delete transaction_url(@transaction)
+    end
+    assert_redirected_to wallet_url(@transaction.origin.id)
+    sign_out @user
+    @transaction.save
+  end
   #
   # test "should update transaction" do
   #   patch transaction_url(@transaction), params: { transaction: { description: @transaction.description, destination: @transaction.destination, origin: @transaction.origin, value: @transaction.value } }
   #   assert_redirected_to transaction_url(@transaction)
   # end
   #
-  # test "should destroy transaction" do
-  #   assert_difference('Transaction.count', -1) do
-  #     delete transaction_url(@transaction)
-  #   end
-  #
-  #   assert_redirected_to transactions_url
-  # end
 end

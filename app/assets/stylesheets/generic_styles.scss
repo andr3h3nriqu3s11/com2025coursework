@@ -43,7 +43,15 @@
 }
 
 .fancy-link {
-  @include fancy-links
+  @include fancy-links;
+  p {
+    margin: 0px;
+  }
+  &.margin-small {
+    p {
+      margin: 1em;
+    }
+  }
 }
 
 .fancy-link.colored {
@@ -77,5 +85,17 @@
   button {
     color: white;
   }
+}
+
+.fira-code {
+  font-family: 'Fira Code', monospace;
+}
+
+.vertical-center {
+  vertical-align: middle;
+}
+
+full-h {
+  height: 100%;
 }
 

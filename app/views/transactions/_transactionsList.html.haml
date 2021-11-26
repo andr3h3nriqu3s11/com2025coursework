@@ -1,0 +1,9 @@
+- if @transactions.length == 0
+  %h1= t("transaction.messages.no_transactions_done")
+- else
+  %h1= t(".latest_transactions")
+  =render "transactions/lineItem", header: true, editLink: (defined?(editLink) and editLink)
+  - @transactions.each do |t|
+    =render "transactions/lineItem", transaction: t, editLink: (defined?(editLink) and editLink)
+  - if (not defined?(noLinkList) and (@transactions.length >= 20)) or (defined?(noLinkList) and not noLinkList and (@transactions.length >= 20))
+    =render "fancylinkblue", left_icon: false, icon: "bi-arrow-right", title: t(".transactions"), link: transactions_url

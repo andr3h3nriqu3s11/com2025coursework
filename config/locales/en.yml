@@ -57,6 +57,7 @@ en:
     delete: "Delete"
     create: 'Create'
     edit: "Edit"
+    show_more: "Show More"
 
     example:
       text: 'Example'
@@ -93,6 +94,9 @@ en:
   transaction:
     form:
       destination_same: "The Origin and the Destination Wallet need to be different"
+    messages:
+      no_transactions_done: "No transaction done yet!"
+      origin_not_owend: "You need to be the owner of the origin wallet to do this action"
 
   email:
     support: "support@andr3h3nriqu3s.com"
@@ -110,6 +114,6 @@ en:
   dashboard:
     dashboard:
       wallets: "Wallets"
+      latest_transactions: "Latest Transactions"
+      transactions: "Transactions"
       new_wallet: "Add New Wallet"
-
-  hello: "Hello world"

@@ -18,7 +18,9 @@ class WalletsController < ApplicationController
   def show
     if (@fail_to_get_wallet)
       redirect_to wallet404_path
+      return
     end
+    @transactions = Transaction.by_wallet(@wallet)
   end
 
   def wallet404

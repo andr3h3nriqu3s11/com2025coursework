@@ -1,6 +1,5 @@
 =render "header"
 
-
 %div.center
   = render 'notice'
   = render 'wallets/icon', wallet: @wallet, noclick: true
@@ -15,3 +14,5 @@
         %span= t('form.delete')
 
   =render "linkdash"
+
+  =render "transactions/transactionsList", noLinkList: true
