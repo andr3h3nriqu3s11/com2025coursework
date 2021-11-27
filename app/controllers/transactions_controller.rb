@@ -33,12 +33,27 @@ class TransactionsController < ApplicationController
 
   # POST /transactions or /transactions.json
   def create
-
     @transaction = Transaction.new(transaction_params)
-
     respond_to do |format|
-      if @transaction.save
-        format.html { redirect_to @transaction, notice: "Transaction was successfully created." }
+      if @transaction_not_found
+        #defaulted for this message since if this happens the origin id is technically not set
+        format.html { redirect_to transaction404_url, notice: I18n.t("transaction.messages.origin_wallet_needed") }
+        format.json { render json: @transaction.errors, status: :bad_request }
+
+      elsif @transaction.origin_id.blank?
+        format.html { redirect_to new_transaction_url, notice: I18n.t("transaction.messages.origin_wallet_needed") }
+        format.json { render json: @transaction.errors, status: :bad_request }
+
+      elsif @transaction.destination_id.blank?
+        format.html { redirect_to new_transaction_url, notice: I18n.t("transaction.messages.destination_wallet_needed") }
+        format.json { render json: @transaction.errors, status: :bad_request }
+
+      elsif @transaction.origin.user_id != current_user.id
+        format.html { redirect_to new_transaction_url, notice: I18n.t("transaction.messages.origin_not_owned") }
+        format.json { render json: @transaction.errors, status: :forbidden }
+
+      elsif @transaction.save
+        format.html { redirect_to @transaction, notice: I18n.t("transaction.messages.transaction_created_success") }
         format.json { render :show, status: :created, location: @transaction }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -50,8 +65,13 @@ class TransactionsController < ApplicationController
   # PATCH/PUT /transactions/1 or /transactions/1.json
   def update
     respond_to do |format|
-      if @transaction.update(transaction_params)
-        format.html { redirect_to @transaction, notice: "Transaction was successfully updated." }
+      if @transaction_not_found
+        #defaulted for this message since if this happens the origin id is technically not set
+        format.html { redirect_to transaction404_url, notice: I18n.t("transaction.messages.origin_wallet_needed") }
+        format.json { render json: @transaction.errors, status: :bad_request }
+
+      elsif @transaction.update(transaction_params)
+        format.html { redirect_to @transaction, notice: I18n.t("transaction.messages.transaction_update_success") }
         format.json { render :show, status: :ok, location: @transaction }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -77,7 +97,7 @@ class TransactionsController < ApplicationController
     origin_id = @transaction.origin.id;
     @transaction.destroy
     respond_to do |format|
-      format.html { redirect_to wallet_url(origin_id), notice: "Transaction was successfully destroyed." }
+      format.html { redirect_to wallet_url(origin_id), notice: I18n.t("transaction.messages.transaction_destroyed_success") }
       format.json { head :no_content }
     end
   end
@@ -109,6 +129,8 @@ class TransactionsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def transaction_params
       params.require(:transaction).permit(:description, :origin_id, :destination_id, :value)
+    rescue
+      @transaction_not_found = true
     end
 
 end

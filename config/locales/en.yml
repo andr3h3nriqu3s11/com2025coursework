@@ -96,7 +96,11 @@ en:
       destination_same: "The Origin and the Destination Wallet need to be different"
     messages:
       no_transactions_done: "No transaction done yet!"
-      origin_not_owend: "You need to be the owner of the origin wallet to do this action"
+      origin_not_owned: "You need to be the owner of the origin wallet to do this action"
+      origin_wallet_needed: "Origin Wallet Needed"
+      transaction_created_success: "Transaction was successfully created."
+      transaction_updated_success: "Transaction was successfully updated."
+      transaction_destroyed_success: "Transaction was successfully deleted."
 
   email:
     support: "support@andr3h3nriqu3s.com"
