@@ -95,6 +95,13 @@ en:
         password_not_match: 'Passwords must match'
 
   transaction:
+
+    edit:
+      title: "Editing transaction"
+
+    new:
+      title: "New transaction"
+
     form:
       destination_same: "The Origin and the Destination Wallet need to be different"
     messages:
@@ -115,9 +122,13 @@ en:
       title: "Editing Wallet"
 
     default:
-      name1: 'Expenses'
-      name2: 'Incomings'
-      name3: 'Net Worth'
+      expenses: 'Expenses'
+      incomings: 'Incomings'
+      net-worth: 'Net Worth'
+
+    show:
+      new_transaction: "New Transaction"
+
     messages:
       error: "Error"
       after_error_message: "prohibited this wallet from being saved:"
@@ -134,3 +145,7 @@ en:
       latest_transactions: "Latest Transactions"
       transactions: "Transactions"
       new_wallet: "Add New Wallet"
+      quick_links: "Quick Links"
+    quick_links:
+      recive: "Received Money"
+      expense: "General Expense"

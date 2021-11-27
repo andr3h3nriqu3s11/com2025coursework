@@ -71,6 +71,11 @@
   height: 2px;
 }
 
+.small-v-spacer {
+  width: 1px;
+  height: 10px;
+}
+
 .naked-btt {
   @include naked-btt;
 }
@@ -89,10 +94,6 @@
 
 .fira-code {
   font-family: 'Fira Code', monospace;
-}
-
-.vertical-center {
-  vertical-align: middle;
 }
 
 full-h {

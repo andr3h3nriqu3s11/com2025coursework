@@ -2,6 +2,14 @@
 
 %div.center
 
+  %div.quick-links.center
+    %h1= t(".quick_links")
+    %div.small-v-spacer
+    %div.flex.small-gap.big-font
+      =render "fancylinkblue", icon: "", title: t("dashboard.quick_links.recive"), link: new_transaction_path(:origin_id => Wallet.by_user(current_user).by_name(t("wallet.default.incomings")).first.id, :destination_id => Wallet.by_user(current_user).by_name(t("wallet.default.net-worth")).first.id)
+      =render "fancylinkblue", icon: "", title: t("dashboard.quick_links.expense"), link: new_transaction_path(:origin_id => Wallet.by_user(current_user).by_name(t("wallet.default.net-worth")).first.id, :destination_id => Wallet.by_user(current_user).by_name(t("wallet.default.expenses")).first.id)
+
+
   %div.wallets
     %div.flex.space-between.align-center.rails-btt-center.naked-btt
       %h1.no-margin= t(".wallets")

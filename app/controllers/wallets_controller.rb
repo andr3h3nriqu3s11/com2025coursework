@@ -18,6 +18,7 @@ class WalletsController < ApplicationController
       return
     end
     @transactions = Transaction.by_wallet(@wallet)
+    Wallet.update_value(@wallet)
   end
 
   def wallet404

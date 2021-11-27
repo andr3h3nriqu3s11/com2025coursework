@@ -35,6 +35,12 @@
 
 }
 
+.action-links {
+  div {
+    width: 40ch;
+  }
+}
+
 .walletLineItem {
   display: grid;
   grid-template-columns: 30ch 30ch;

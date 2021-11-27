@@ -21,6 +21,28 @@ class TransactionsController < ApplicationController
   # GET /transactions/new
   def new
     @transaction = Transaction.new
+
+    if defined? params[:origin_id]
+      @transaction.origin_id = params[:origin_id]
+    end
+
+    if defined? params[:destination_id]
+      @transaction.destination_id = params[:destination_id]
+    end
+
+    user_wallets = Wallet.by_user(current_user)
+
+    puts "Here!"
+    puts user_wallets.by_id(@transaction.origin_id).length
+
+    if user_wallets.by_id(@transaction.origin_id).length != 1
+      @transaction.origin = Wallet.by_user(current_user).first
+    end
+
+    if user_wallets.by_id(@transaction.destination_id).length != 1
+      @transaction.destination = Wallet.by_user(current_user).last
+    end
+
   end
 
   # GET /transactions/1/edit

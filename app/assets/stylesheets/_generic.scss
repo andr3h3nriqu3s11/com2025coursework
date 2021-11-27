@@ -16,6 +16,10 @@
 
 .flex {
   display: flex;
+
+  &.small-gap {
+    gap: 10px;
+  }
 }
 
 .flex.space-between {

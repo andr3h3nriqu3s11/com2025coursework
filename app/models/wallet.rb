@@ -11,9 +11,32 @@ class Wallet < ApplicationRecord
   scope :by_user, -> (user) { by_user_id(user.id) }
   scope :by_id, -> (id) { where(['id = ?', id]) }
 
+  scope :by_name, -> (name) { where(['name = ?', name])}
+
+  #Updates the value of a wallets
+  scope :update_value, -> (wallet) {
+    #Get transactions where this is the origin
+    transactions_origin = Transaction.where(["origin_id = ?",  wallet.id])
+
+    #Get transactions where this is the destination
+    transactions_destination = Transaction.where(["destination_id = ?",  wallet.id])
+
+    value = 0
+
+    transactions_destination.each { |t| value += t.value }
+    transactions_origin.each { |t| value -= t.value }
+
+    wallet.value = value
+
+    wallet.save
+  }
+
+  scope :update_value_id, -> (wallet_id) { update_value_id(by_id(wallet_id)) }
+
+
   # Creates and saves the default wallets for a user
   scope :create_default_wallets, -> (user_id) do
-    names = [ I18n.t("wallet.default.name1"), I18n.t("wallet.default.name2"), I18n.t("wallet.default.name3")]
+    names = [ I18n.t("wallet.default.expenses"), I18n.t("wallet.default.incomings"), I18n.t("wallet.default.net-worth")]
     icons = [ "currency-dollar", "box-arrow-in-left", "wallet2"]
     names.each_with_index do |name, i|
       w = Wallet.new
