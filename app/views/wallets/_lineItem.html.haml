@@ -1,0 +1,10 @@
+-if defined? header and header
+  %div.walletLineItem{class: (defined?(editLink) and editLink) ?  "withLink" : ""}
+    %span=t("form.name")
+    %span=t("form.value")
+-else
+  %div.walletLineItem{class: (defined?(editLink) and editLink) ?  "withLink" : ""}
+    %span=wallet.name
+    %span=wallet.value
+    - if defined?(editLink) and editLink
+      =render "fancylinkblue", left_icon: true, title: t("form.show_more"), link: wallet_url(wallet), icon: "bi-arrow-right"

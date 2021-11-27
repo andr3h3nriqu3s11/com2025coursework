@@ -1,7 +1,12 @@
-%h1 Editing wallet
+=render "header"
 
-= render 'form'
+%div.center
+  %h1= t("wallet.edit.title")
 
-= link_to 'Show', @wallet
-\|
-= link_to 'Back', wallets_path
+  %div{style: "margin-top: 10px"}
+
+  = render "icon", wallet: @wallet, noclick: true
+
+  = render 'form'
+
+  = render "fancylinkblue", margin: true, title: t("form.cancel"), link: wallet_path(@wallet)

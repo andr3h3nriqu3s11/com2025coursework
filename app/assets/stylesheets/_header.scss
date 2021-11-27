@@ -8,7 +8,6 @@ header {
   grid-template-columns: auto 1fr auto auto;
   align-items: center;
   font-size: 22px;
-  transition: all 0.5s;
 
   @include fancy-links;
 
@@ -27,10 +26,15 @@ header {
     grid-auto-flow: column;
     grid-column-gap: 10px;
   }
+
   li {
     display: block;
   }
 
+}
+
+body.loaded header {
+  transition: all 0.5s;
 }
 
 body.darkmode header {

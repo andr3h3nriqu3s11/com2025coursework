@@ -1,28 +1,12 @@
-%h1 Listing wallets
+=render "header"
 
-%table
-  %thead
-    %tr
-      %th Name
-      %th Icon
-      %th Owner
-      %th Value
-      %th System
-      %th
-      %th
-      %th
+%div.center
+  - if @wallets.length == 0
+    %h1= t("wallet.messages.no_wallets")
+  - else
+    %h1= t("dashboard.dashboard.wallets")
+    =render "lineItem", header: true, editLink: true
+    - @wallets.each do |w|
+      =render "lineItem", wallet: w, editLink: true
 
-  %tbody
-    - @wallets.each do |wallet|
-      %tr
-        %td= wallet.name
-        %td= wallet.icon
-        %td= wallet.value
-        %td= wallet.system
-        %td= link_to 'Show', wallet
-        %td= link_to 'Edit', edit_wallet_path(wallet)
-        %td= link_to 'Destroy', wallet, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Wallet', new_wallet_path
+  =render "linkdash"

@@ -20,6 +20,9 @@
 var darkmode = false;
 
 $(document).on('turbolinks:load', startup);
+$(document).on('turbolinks:before-visit', function () {
+    $(document.body).removeClass("loaded")
+});
 
 function setDarkMode() {
     if (darkmode) {
@@ -37,6 +40,10 @@ function startup() {
         console.log(darkmode);
         darkmode = !darkmode;
         setDarkMode();
+    });
+
+    window.requestAnimationFrame(() => {
+        $(document.body).addClass("loaded")
     });
 
     setupSignupPage();
@@ -94,12 +101,7 @@ function setUpTransaction() {
         if ($(origin).val() == $(destination).val()) {
             $('#destination_same').show();
             $(destination).addClass('form-fail');
-            // By this point for some reason the button is not disabled yet so this timeout
-            // will wait for the button to be disabled so it can reenable it again
-            setTimeout(() => {
-                document.getElementById('submit_btt').disabled = false;
-                //$('#submit_btt').disabled = false;
-            }, 100);
+            e.stopPropagation();
             e.preventDefault();
         } else {
             $('#destination_same').hide();

@@ -62,7 +62,7 @@ class WalletsController < ApplicationController
 
     respond_to do |format|
       if @wallet.save
-        format.html { redirect_to @wallet, notice: "Wallet was successfully created." }
+        format.html { redirect_to @wallet, notice: I18n.t("wallet.messages.wallet_created_success") }
         format.json { render :show, status: :created, location: @wallet }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -80,7 +80,7 @@ class WalletsController < ApplicationController
 
     respond_to do |format|
       if @wallet.update(wallet_params)
-        format.html { redirect_to @wallet, notice: "Wallet was successfully updated." }
+        format.html { redirect_to @wallet, notice: I18n.t("wallet.messages.wallet_updated_success") }
         format.json { render :show, status: :ok, location: @wallet }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -105,7 +105,7 @@ class WalletsController < ApplicationController
 
     @wallet.destroy
     respond_to do |format|
-      format.html { redirect_to dashboard_url, notice: "Wallet was successfully destroyed." }
+      format.html { redirect_to dashboard_url, notice: I18n.t("wallet.messages.wallet_destroyed_success") }
       format.json { head :no_content }
     end
   end

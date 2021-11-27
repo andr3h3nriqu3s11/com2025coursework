@@ -54,16 +54,19 @@ en:
 
     submit: "Submit"
     send: "Send"
+    save: "Save"
     delete: "Delete"
     create: 'Create'
     edit: "Edit"
     show_more: "Show More"
+    cancel: "Cancel"
 
     example:
       text: 'Example'
       email: 'example@example.example'
 
     messages:
+
       no_email: 'Please fill the email'
       no_name: 'Please fill the name'
       no_subject: 'Please fill the subject'
@@ -107,13 +110,23 @@ en:
     no_reply: "no-reply@andr3h3nriqu3s.com"
 
   wallet:
+
+    edit:
+      title: "Editing Wallet"
+
     default:
       name1: 'Expenses'
       name2: 'Incomings'
       name3: 'Net Worth'
     messages:
+      error: "Error"
+      after_error_message: "prohibited this wallet from being saved:"
+
       can_not_be_changed: 'This Wallet is a system wallet and can not be changed'
       can_only_create_for_yourself: 'You can only create a wallet for yourself'
+      wallet_created_success: "Wallet was successfully created."
+      wallet_updated_success: "Wallet was successfully updated."
+      wallet_destroyed_success: "Wallet was successfully deleted."
 
   dashboard:
     dashboard:

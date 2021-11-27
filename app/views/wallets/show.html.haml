@@ -13,6 +13,9 @@
         %span.bi.bi-trash
         %span= t('form.delete')
 
-  =render "linkdash"
+  %div.flex
+    =render "linkdash"
+    %div.small-spacer
+    =render "fancylinkblue", link: edit_wallet_path(@wallet), left_icon: true, icon: "bi-arrow-right", title: t("form.edit"), margin: true
 
   =render "transactions/transactionsList", noLinkList: true
