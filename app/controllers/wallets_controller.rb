@@ -5,13 +5,10 @@ class WalletsController < ApplicationController
   # GET /wallets or /wallets.json
   def index
 
-    # TODO: User premissions
-    # TODO: replace with is admin or similar
-    if true
-      redirect_to dashboard_url
-      return
-    end
-    @wallets = Wallet.all
+    # TODO show all if admin
+    # @wallets = Wallet.all
+
+    @wallets = Wallet.by_user(current_user)
   end
 
   # GET /wallets/1 or /wallets/1.json

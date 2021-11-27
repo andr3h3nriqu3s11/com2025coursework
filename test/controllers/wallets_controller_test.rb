@@ -16,19 +16,12 @@ class WalletsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_user_session_url
   end
 
-  test "should not get index - no permission" do
+  test "should get index" do
     sign_in @user
     get wallets_url
-    assert_redirected_to dashboard_url
+    assert_response :success
     sign_out @user
   end
-
-  # TODO: user premissions
-  # test "should get index" do
-  #   get wallets_url
-  #   assert_response :redirect
-  # end
-
 
   test "should not get new - no user" do
     get new_wallet_url
