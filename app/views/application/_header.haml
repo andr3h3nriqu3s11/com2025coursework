@@ -1,11 +1,17 @@
-%header
+%nav
   - if not user_signed_in?
-    %p= link_to t(".home"), root_path
+    =link_to root_path do
+      %img{src: image_url('logo.png')}
   - else
     -# To be a bit more efficient
     %p= link_to t(".home"), dashboard_path
 
-  %div
+  - if defined?(notice) and notice
+    %div.text-center
+      = render "notice"
+  -else
+    %div
+
   %ul
     %li= link_to t(".contact"), contact_path
     - if not user_signed_in?

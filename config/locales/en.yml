@@ -31,6 +31,39 @@
 
 en:
 
+  home:
+    home:
+      title: "Ledger on Rails"
+      # You can write html here
+      subtitle: "
+        A web application to help you manage you <i>finances</i><br>
+      "
+      # You can write html here
+      explanation: "
+        It's a double-entry bookkeeping system, which in laymen terms means that each entry must have a correspondent entry in a different system.
+      "
+      how_it_works:
+        title: "How it works?"
+        wallets:
+          title: "Wallets"
+          some_value: "It holds some value"
+          # You can write html here
+          explanation: "
+            Wallets represent an area of you finances!<br>
+            Your <b><i>Expenses</i></b> wallet represents you expenses and you <b><i>Net Worth</i></b> wallet represents you net worth.<br>
+            Wallets can have negative values since they can also represent external parts of you finances where some else is losing the value.<br>
+            Your <b><i>Incomings</i></b> wallet will have negative value since it represents the money you receive form your work or somebody.<br>
+          "
+
+        transaction:
+          title: "Transactions"
+          # You can write html here
+          explanation_balance: "
+            Every transaction is balanced! <br>
+            <b>Value can not be created and it can not destroyed!</b><br>
+            Value must come form a wallet to another and it does not matter if the wallet has the value to support that transaction as it was said before the wallets can have negative values!
+          "
+
   application:
     header:
       home: 'Home'

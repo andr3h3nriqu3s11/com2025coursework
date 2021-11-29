@@ -1,6 +1,6 @@
 @import 'generic_styles';
 
-header {
+nav {
   padding: 10px 10px;
   height: 50px;
   width: calc(100vw - 20px);
@@ -8,13 +8,15 @@ header {
   grid-template-columns: auto 1fr auto auto;
   align-items: center;
   font-size: 22px;
+  position: sticky;
+  top: 0px;
 
   @include fancy-links;
 
   @include naked-btt;
   @include bi-btts;
 
-  p,a,ul {
+  p,a,ul,img {
     margin: 0px;
   }
 
@@ -31,13 +33,17 @@ header {
     display: block;
   }
 
+  img {
+    max-height: 50px;
+  }
+
 }
 
-body.loaded header {
+body.loaded nav  {
   transition: all 0.5s;
 }
 
-body.darkmode header {
+body.darkmode nav {
     background-color: #464646;
     @include fancy-links-darkmode;
     button {
@@ -50,8 +56,3 @@ body.darkmode header {
     }
 }
 
-header.floating {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-}

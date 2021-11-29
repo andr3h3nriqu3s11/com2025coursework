@@ -53,6 +53,21 @@
   font-size: 20px;
 }
 
+.line-spacing-small {
+  line-height: 1.4em;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+// This will limit the size of text and force it to break when it reaches the limit
+// TODO change this for smaller screens
+.limit-size-center {
+  max-width: 60vw;
+  overflow-wrap: break-word;
+}
+
 .fancy-link {
   @include fancy-links;
 }

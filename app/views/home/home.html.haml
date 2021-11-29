@@ -1,5 +1,40 @@
-=render 'header'
+=render 'header', notice: true
 
-%div.center
-  =render 'notice'
+.center.text-center
+  %h1= t(".title")
+  %h2
+    != t(".subtitle")
+
+  .big-font
+    != t(".explanation")
+
+  %section.center
+    %title
+      %h1= t(".how_it_works.title")
+
+    .center.limit-size-center
+      %h2= t(".how_it_works.wallets.title")
+
+      .big-font.line-spacing-small
+        != t(".how_it_works.wallets.explanation")
+
+      .small-v-spacer
+      =render "wallets/icon", wallet: @wallet, noclick: true
+
+      .small-v-spacer
+      ="🡅"
+      .big-font
+        = t(".how_it_works.wallets.some_value")
+
+    .center
+      %h2= t(".how_it_works.transaction.title")
+      .big-font.line-spacing-small.limit-size-center
+        != t(".how_it_works.transaction.explanation_balance")
+
+      .balance
+
+        .bar-holder
+          .bar
+            .icon1
+            .icon2
 

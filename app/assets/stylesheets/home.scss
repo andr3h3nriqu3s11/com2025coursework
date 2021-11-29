@@ -1,3 +1,21 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.scss.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.balance {
+
+  width: 100vw;
+  height: 700px;
+  position: relative;
+
+  .bar-holder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+
+  //.bar
+  //.icon1
+  //.icon2
+}
+
