@@ -1,4 +1,15 @@
 %div.center.fullpage
-  %div
-    = "No transaction found"
+  %div.center
+    %div.flex
+      =render "wallets/icon", wallet: @origin, noclick: false
+
+      %div.small-spacer
+
+      %div.fira-code.center.full-h= "----------------->"
+
+      %div.small-spacer
+
+      =render "wallets/icon", wallet: @destination, noclick: false
+
+    %h2= "No transaction found"
     =render "linkdash"

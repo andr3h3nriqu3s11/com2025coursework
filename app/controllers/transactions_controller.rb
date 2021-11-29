@@ -125,6 +125,13 @@ class TransactionsController < ApplicationController
   end
 
   def transaction404
+    @origin = Wallet.new
+    @origin.name = t("transaction.404.transaction")
+    @origin.icon = "currency-dollar"
+
+    @destination = Wallet.new
+    @destination.name = t("transaction.404.not_found")
+    @destination.icon = "emoji-frown"
   end
 
   private

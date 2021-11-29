@@ -96,6 +96,11 @@ en:
 
   transaction:
 
+    404:
+      transaction: "Transaction"
+      not_found: "Not found"
+      no_transaction_found: "No transaction found"
+
     edit:
       title: "Editing transaction"
 
