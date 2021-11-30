@@ -15,6 +15,10 @@ class DashboardControllerTest < ActionDispatch::IntegrationTest
 
   test "should get dashboard" do
     sign_in @user
+
+    #This needs to be done since the dashboard is expecting the user to have the wallets that were created at runtime
+    Wallet.create_default_wallets(@user.id)
+
     get dashboard_dashboard_url
     assert_response :success
     sign_out @user

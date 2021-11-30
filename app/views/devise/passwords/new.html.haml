@@ -1,0 +1,15 @@
+.center.fullpage
+  .center
+    %h2= t(".title")
+
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "center" }) do |f|
+      = render "devise/shared/error_messages", resource: resource
+
+      .field
+        = f.label :email
+        = f.email_field :email, autofocus: true, autocomplete: "email", required: true
+
+      .actions
+        = f.submit t(".send")
+
+      = render "linkdash"

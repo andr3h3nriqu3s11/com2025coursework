@@ -9,6 +9,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #  super
   # end
 
+  # Only need to change this one to create the wallets at login time
   # POST /resource
   def create
     #super

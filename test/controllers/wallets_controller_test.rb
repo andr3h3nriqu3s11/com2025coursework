@@ -153,28 +153,36 @@ class WalletsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should not update wallet - no user" do
-    patch wallet_url(@wallet), params: { wallet: { icon: @wallet.icon, name: @wallet.name, system: @wallet.system, value: @wallet.value } }
+    patch wallet_url(@wallet), params: { wallet: { icon: @wallet.icon, name: @wallet.name, value: @wallet.value } }
     assert_redirected_to new_user_session_url
   end
 
   test "should not update wallet - no wallet" do
     sign_in @user
-    patch wallet_url(-1), params: { wallet: { icon: @wallet.icon, name: @wallet.name, system: @wallet.system, value: @wallet.value } }
+    patch wallet_url(-1), params: { wallet: { icon: @wallet.icon, name: @wallet.name, value: @wallet.value } }
     assert_redirected_to wallet404_url
     sign_out @user
   end
 
   test "should not update wallet - wrong user" do
     sign_in @user2
-    patch wallet_url(@wallet), params: { wallet: { icon: @wallet.icon, name: @wallet.name, system: @wallet.system, value: @wallet.value } }
+    patch wallet_url(@wallet), params: { wallet: { icon: @wallet.icon, name: @wallet.name, value: @wallet.value } }
     assert_redirected_to wallet404_url
     sign_out @user2
   end
   #TODO: a test for the admin
 
+  test "should not update wallet - system wallet" do
+    sign_in @user
+    patch wallet_url(@wallet2), params: { wallet: { icon: @wallet.icon, name: @wallet.name, value: @wallet.value } }
+    assert_redirected_to wallet_url(@wallet2)
+    assert_equal I18n.t("wallet.messages.can_not_be_changed"), flash[:notice]
+    sign_out @user
+  end
+
   test "should update wallet" do
     sign_in @user
-    patch wallet_url(@wallet), params: { wallet: { icon: @wallet.icon, name: @wallet.name, system: @wallet.system, value: @wallet.value } }
+    patch wallet_url(@wallet), params: { wallet: { icon: @wallet.icon, name: @wallet.name, value: @wallet.value } }
     assert_redirected_to wallet_url(@wallet)
     sign_out @user
   end

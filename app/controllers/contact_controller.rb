@@ -2,6 +2,7 @@ class ContactController < ApplicationController
   def contact
   end
 
+  # This method send the email using the contact mailler
   def submit
     name = params[:name]
     email = params[:email]

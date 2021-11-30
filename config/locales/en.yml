@@ -130,20 +130,22 @@ en:
   devise:
     form:
       login: 'Login'
-      no_login: "Don't have an account? Click here to create a new one"
-      have_account: 'Already have an account?'
       signup: 'Signup'
       password: 'Password'
       confirm_password: 'Confirm password'
       current_password: 'Current password'
-      leave_it_empty: "(leave blank if you don't want to change it)"
-      character_minimum: "characters minimum"
 
-
+      messages:
+        no_login: "Don't have an account? Click here to create a new one"
+        forgot_password: "Forgot password"
+        have_account: 'Already have an account?'
+        leave_it_empty: "(leave blank if you don't want to change it)"
+        character_minimum: "characters minimum"
 
     sessions:
       new:
         login_title: 'Already have an account?'
+
     registrations:
       new:
         title: 'Create your account'
@@ -156,6 +158,11 @@ en:
           title: "Cancel My Account"
           subtitle: "Unhappy"
           button: "Cancel My Account"
+
+    passwords:
+      new:
+        title: "Forgot your password?"
+        send: "Send me reset password instructions"
 
   transaction:
 
