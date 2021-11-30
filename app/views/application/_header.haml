@@ -18,6 +18,7 @@
       %li= link_to t(".login"), new_user_session_path
     - else
       -# %li= link_to(t(".logoff"), destroy_user_session_path, :method => :delete)
+      %li= link_to t(".profile"), edit_user_registration_path
       %li
         =button_to destroy_user_session_path, :method => :delete, class: 'bi bi-box-arrow-right', title: t('.logoff') do
           = ""

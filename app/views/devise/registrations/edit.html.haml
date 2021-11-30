@@ -1,0 +1,51 @@
+=render "header"
+
+.center
+  %h2= t(".title")
+  =render "devise/shared/error_messages", resource: resource
+
+  =form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "center" }) do |f|
+
+    .field
+      = f.label :email
+      = f.email_field :email, autofocus: true, autocomplete: "email"
+
+    -# Not doing email confirmation
+    -# - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+    -#   %div
+    -#     ="Currently waiting confirmation for: #{resource.unconfirmed_email}"
+
+    .field
+      = f.label :password do
+        %span= t("devise.form.password")
+        %i= t("devise.form.leave_it_empty")
+
+      - if @minimum_password_length
+        %em= "#{@minimum_password_length} #{t("devise.form.character_minimum")}"
+
+      = f.password_field :password, autocomplete: "new-password"
+
+    .field
+      = f.label :password_confirmation
+      = f.password_field :password_confirmation, autocomplete: "new-password"
+
+    .field
+      = f.label :current_password do
+        %span= t("devise.form.current_password")
+        %i= "(we need your current password to confirm your changes)"
+      = f.password_field :current_password, autocomplete: "current-password"
+
+    .actions
+      = f.submit t("form.save")
+
+  %h3= t(".cancel_my_account.title")
+
+  %p.no-margin
+    =t(".cancel_my_account.subtitle")
+
+  .naked-btt
+    = button_to registration_path(resource_name), data: { confirm: t("form.messages.dialog.are_you_sure")  }, method: :delete, class: "rounded padded" do
+      %span.bi.bi-trash
+      %span= t(".cancel_my_account.button")
+
+  = render "linkdash"

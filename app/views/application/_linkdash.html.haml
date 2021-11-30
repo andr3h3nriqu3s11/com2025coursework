@@ -1,1 +1,4 @@
-=render "fancylinkblue", link: dashboard_url, title: t("form.message.go_back"), margin: true
+-if defined? force_dash and force_dash
+  =render "fancylinkblue", link: dashboard_url, title: t("form.messages.go_back_dash"), margin: true
+-else
+  =render "fancylinkblue", link: :back, title: t("form.messages.go_back"), margin: true

@@ -1,5 +1,5 @@
 %div.center.fullpage
-  %div
+  %div.center
     =render "icon", wallet: @wallet, noclick: true
-    %div{style: "margin-top: 10px;"}
-    =render "linkdash"
+    .small-v-spacer
+    =render "linkdash", force_dash: true

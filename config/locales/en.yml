@@ -75,13 +75,13 @@ en:
         title: "Ready to begin"
         sign_up: "Sign up"
 
-
   application:
     header:
       home: 'Home'
       contact: 'Contact'
       login: 'Login'
       logoff: 'Logoff'
+      profile: 'Profile'
       toggledarkmode: 'Toggle Dark Mode'
 
   form:
@@ -111,11 +111,14 @@ en:
       email: 'example@example.example'
 
     messages:
-
       no_email: 'Please fill the email'
       no_name: 'Please fill the name'
       no_subject: 'Please fill the subject'
-      go_back: "Back to the dashboard"
+      go_back: "Go Back"
+      go_back_dash: "Back to the dashboard"
+
+      dialog:
+        are_you_sure: "Are you sure?"
 
   contact:
     contact:
@@ -130,6 +133,14 @@ en:
       no_login: "Don't have an account? Click here to create a new one"
       have_account: 'Already have an account?'
       signup: 'Signup'
+      password: 'Password'
+      confirm_password: 'Confirm password'
+      current_password: 'Current password'
+      leave_it_empty: "(leave blank if you don't want to change it)"
+      character_minimum: "characters minimum"
+
+
+
     sessions:
       new:
         login_title: 'Already have an account?'
@@ -138,6 +149,13 @@ en:
         title: 'Create your account'
         password_not_meat_minimum: 'Password does not have the minimum number of characters'
         password_not_match: 'Passwords must match'
+
+      edit:
+        title: "Edit Profile"
+        cancel_my_account:
+          title: "Cancel My Account"
+          subtitle: "Unhappy"
+          button: "Cancel My Account"
 
   transaction:
 
