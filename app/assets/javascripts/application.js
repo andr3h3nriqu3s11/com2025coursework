@@ -49,6 +49,7 @@ function startup() {
     setupSignupPage();
     setupCreateNewWallet();
     setUpTransaction();
+    setUpHome();
 }
 
 function setupCreateNewWallet() {
@@ -117,6 +118,24 @@ function setUpTransaction() {
             $(destination).removeClass('form-fail');
         }
     });
+}
+
+function setUpHome() {
+    window.onscroll = () => {
+        let botScreen = window.innerHeight + window.scrollY;
+        if (botScreen - (1 * window.innerHeight / 5) > $("#balance").position().top) {
+            if (botScreen - (1 * window.innerHeight / 5) > $("#balance").position().top + $("#balance").height()) {
+                $("#bar").prop("style", "transform: rotate(0deg)");
+                return;
+            }
+
+            //  25deg -> at the div top of the bar
+            //  0deg -> bo
+
+            let rot = 25 * Math.max((1 - (((botScreen - (1 * window.innerHeight / 5)) - $("#balance").position().top) / $("#balance").height() * 1.2)), 0);
+            $("#bar").prop("style", `transform: rotate(${-rot}deg)`);
+        }
+    };
 }
 
 // This function will change the path of the window to the desired location

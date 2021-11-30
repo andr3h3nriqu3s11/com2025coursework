@@ -76,14 +76,42 @@
   height: 10px;
 }
 
-.naked-btt {
-  @include naked-btt;
+.half-v-space {
+  width: 1px;
+  height: 50vh;
 }
 
 .naked-btt {
+  @include naked-btt;
+
   button {
     color: black;
   }
+
+  button.rounded {
+    border-radius: 10px;
+  }
+
+  button.padded {
+    padding: 5px;
+  }
+
+  button.big-padded {
+    padding: 15px;
+  }
+
+  &.blue-haze {
+    button {
+      color: white;
+      background-color: $blue_haze;
+    }
+
+    button:hover {
+      background-color: $dark_blue_haze;
+    }
+
+  }
+
 }
 
 .darkmode .naked-btt {

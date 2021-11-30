@@ -63,6 +63,18 @@ en:
             <b>Value can not be created and it can not destroyed!</b><br>
             Value must come form a wallet to another and it does not matter if the wallet has the value to support that transaction as it was said before the wallets can have negative values!
           "
+          scale: "The value into the transaction is the same as the value out of the transaction"
+          # You can write html here
+          explanation: "
+            Transactions represent movements of your assets.<br>
+            A transaction form the <i>Net Worth</i> wallet to the <i>Expenses</i> wallet with the value of 10 means that 10 the currency you consider to be holding on the <i>Net worth</i> wallet is going to the <i>Expenses</i> wallet.<br>
+            The sentence above referred to \"currency\" instead of pounds or dollars as of now the system does not the care if you are storing dollars, pounds or potatoes, it will treat every as the same \"unit\"!<br>
+          "
+
+      ready_to_begin:
+        title: "Ready to begin"
+        sign_up: "Sign up"
+
 
   application:
     header:

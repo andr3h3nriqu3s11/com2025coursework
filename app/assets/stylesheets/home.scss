@@ -2,20 +2,46 @@
 // They will automatically be included in application.scss.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.balance {
+@import "variables";
+
+@mixin icon-bar-generic {
+  position: absolute;
+  top: -400%;
+}
+
+#balance {
 
   width: 100vw;
   height: 700px;
-  position: relative;
 
-  .bar-holder {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+  #bar {
+    width: 50%;
+    height: 40px;
+    background-color: $blue_haze;
+    position: relative;
   }
 
-  //.bar
-  //.icon1
-  //.icon2
+  @media screen and (max-width: 700px) {
+    #bar {
+      width: 70%;
+    }
+  }
+
+  .icon1 {
+    @include icon-bar-generic;
+  }
+
+  .icon2 {
+    @include icon-bar-generic;
+    left: calc(100% - 140px);
+  }
+  .text {
+    @include icon-bar-generic;
+    top: 200%;
+    left: 25%;
+    width: 50%;
+
+  }
 }
+
 

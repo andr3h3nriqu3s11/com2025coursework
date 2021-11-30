@@ -2,10 +2,10 @@
 
 .center.text-center
   %h1= t(".title")
-  %h2
+  %h2.limit-size-center
     != t(".subtitle")
 
-  .big-font
+  .big-font.limit-size-center
     != t(".explanation")
 
   %section.center
@@ -31,10 +31,26 @@
       .big-font.line-spacing-small.limit-size-center
         != t(".how_it_works.transaction.explanation_balance")
 
-      .balance
+      #balance.center
+        -# here the style is applied so it can be controlled by js
+        #bar{style: "transform: rotate(-25deg);"}
+          .icon1
+            =render "wallets/icon", wallet: @walletIn, noclick: true
+          .icon2
+            =render "wallets/icon", wallet: @walletOut, noclick: true
+          .text
+            = t(".how_it_works.transaction.scale")
 
-        .bar-holder
-          .bar
-            .icon1
-            .icon2
+      .big-font.line-spacing-small.limit-size-center
+        != t(".how_it_works.transaction.explanation")
+  .small-v-spacer
 
+  %section.big-font
+    %h1= t(".ready_to_begin.title")
+
+    .naked-btt.blue-haze
+      .small-v-spacer
+      =button_to new_user_session_url, class: "rounded big-font big-padded" do
+        = t(".ready_to_begin.sign_up")
+
+  .half-v-space
