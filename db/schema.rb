@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_22_202041) do
+ActiveRecord::Schema.define(version: 2021_12_01_173754) do
 
   create_table "transactions", force: :cascade do |t|
     t.string "description"
@@ -33,6 +33,13 @@ ActiveRecord::Schema.define(version: 2021_11_22_202041) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "wallet_icons", force: :cascade do |t|
+    t.string "icon", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["icon"], name: "index_wallet_icons_on_icon", unique: true
   end
 
   create_table "wallets", force: :cascade do |t|
