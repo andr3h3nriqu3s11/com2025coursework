@@ -9,11 +9,17 @@ class HomeController < ApplicationController
     #Set up some dummy wallets so that it can be used by the render function to show some nice wallet icons
     @wallet = Wallet.new
     @wallet.name = "This is a wallet"
+    @wallet.wallet_icon = WalletIcon.from_str("wallet")
+
+    puts @wallet.wallet_icon.icon
+    puts @wallet.wallet_icon
 
     @walletIn = Wallet.new
+    @walletIn.wallet_icon = WalletIcon.from_str("wallet")
     @walletIn.name = "In"
 
     @walletOut = Wallet.new
+    @walletOut.wallet_icon = WalletIcon.from_str("wallet")
     @walletOut.name = "Out"
 
   end

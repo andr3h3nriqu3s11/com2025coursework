@@ -57,26 +57,27 @@ function setupCreateNewWallet() {
         $(".icon-wallet-name").html($(this).val());
     });
 
-    initial = `bi-${$("#wallet-icon-select option:selected").text()}`
-
-    $("#wallet-icon-select").children().each(function ()
-    {
-        let text = this.innerHTML;
-
-        this.innerHTML = `<span icon='bi bi-${text}'></span>${text}`
-
-    });
-
-    var v = $(".wallet-icon .bi");
-    v.removeClass("bi-wallet");
-    v.addClass(initial);
-
-    $("#wallet-icon-select").change(() => {
-        v.removeClass(initial);
+    if($('#wallet-icon-select').length) {
         initial = `bi-${$("#wallet-icon-select option:selected").text()}`
-        v.addClass(initial);
-    });
 
+        $("#wallet-icon-select").children().each(function ()
+        {
+            let text = this.innerHTML;
+
+            this.innerHTML = `<span icon='bi bi-${text}'></span>${text}`
+
+        });
+
+        let v = $(".wallet-icon .bi");
+        v.removeClass("bi-wallet");
+        v.addClass(initial);
+
+        $("#wallet-icon-select").change(() => {
+            v.removeClass(initial);
+            initial = `bi-${$("#wallet-icon-select option:selected").text()}`
+            v.addClass(initial);
+        });
+    }
 }
 
 function setupSignupPage() {
