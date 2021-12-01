@@ -19,8 +19,18 @@ class TransactionsControllerTest < ActionDispatch::IntegrationTest
 
   test "should get index" do
      sign_in @user
+
      get transactions_url
      assert_response :success
+
+     check_header_login
+
+     #Checks that all the transactions from that user are shown
+     assert_select ".transactionLineItem" do |elms|
+       # We remove one for the header line which has the same selector of the rest of the lines
+       assert_equal Transaction.by_user(@user).length, elms.length - 1
+     end
+
      sign_out @user
    end
 
@@ -31,8 +41,12 @@ class TransactionsControllerTest < ActionDispatch::IntegrationTest
 
   test "should get new" do
     sign_in @user
+
     get new_transaction_url
     assert_response :success
+
+    check_header_login
+
     sign_out @user
   end
 
@@ -122,17 +136,28 @@ class TransactionsControllerTest < ActionDispatch::IntegrationTest
 
   test "should show transaction - at least one origin or destination" do
     sign_in @user2
+
     get transaction_url(@transaction2)
     assert_response :success
+
+    check_header_login
+
     get transaction_url(@transaction3)
     assert_response :success
+
+    check_header_login
+
     sign_out @user2
   end
 
   test "should show transaction" do
     sign_in @user
+
     get transaction_url(@transaction)
     assert_response :success
+
+    check_header_login
+
     sign_out @user
   end
 
@@ -169,17 +194,28 @@ class TransactionsControllerTest < ActionDispatch::IntegrationTest
 
   test "should get edit transaction - at least one origin or destination" do
     sign_in @user2
+
     get edit_transaction_url(@transaction2)
     assert_response :success
+
+    check_header_login
+
     get edit_transaction_url(@transaction3)
     assert_response :success
+
+    check_header_login
+
     sign_out @user2
   end
 
   test "should get edit transaction" do
     sign_in @user
+
     get edit_transaction_url(@transaction)
     assert_response :success
+
+    check_header_login
+
     sign_out @user
   end
 

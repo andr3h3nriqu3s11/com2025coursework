@@ -21,6 +21,20 @@ class DashboardControllerTest < ActionDispatch::IntegrationTest
 
     get dashboard_dashboard_url
     assert_response :success
+
+    check_header_login
+
+    #Checks that all the wallets from that user are shown
+    assert_select ".wallet-icon" do |elms|
+      assert_equal Wallet.by_user(@user).count, elms.length
+    end
+
+    #Checks that all the transactions from that user are shown
+    assert_select ".transactionLineItem" do |elms|
+      # We remove one for the header line which has the same selector of the rest of the lines
+      assert_equal Transaction.by_user(@user).take(21).length, elms.length - 1
+    end
+
     sign_out @user
   end
 

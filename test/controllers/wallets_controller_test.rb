@@ -20,6 +20,16 @@ class WalletsControllerTest < ActionDispatch::IntegrationTest
     sign_in @user
     get wallets_url
     assert_response :success
+
+    check_header_login
+
+    #Checks that all the wallets from that user are shown
+    assert_select ".walletLineItem" do |elms|
+      # We remove one for the header line which has the same selector of the rest of the lines
+      assert_equal Wallet.by_user(@user).length, elms.length - 1
+    end
+
+
     sign_out @user
   end
 
@@ -30,8 +40,12 @@ class WalletsControllerTest < ActionDispatch::IntegrationTest
 
   test "should get new" do
     sign_in @user
+
     get new_wallet_url
     assert_response :success
+
+    check_header_login
+
     sign_out @user
   end
 
@@ -85,8 +99,12 @@ class WalletsControllerTest < ActionDispatch::IntegrationTest
 
   test "should show wallet" do
     sign_in @user
+
     get wallet_url(@wallet)
     assert_response :success
+
+    check_header_login
+
     sign_out @user
   end
 
@@ -147,8 +165,12 @@ class WalletsControllerTest < ActionDispatch::IntegrationTest
 
   test "should get edit" do
     sign_in @user
+
     get edit_wallet_url(@wallet)
     assert_response :success
+
+    check_header_login
+
     sign_out @user
   end
 
