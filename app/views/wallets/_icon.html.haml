@@ -1,6 +1,6 @@
 %div.wallet-icon{class: "#{wallet.color.blank? ? 'default-background' : ''} #{noclick == false ? 'cursor-click' : ''}", style: "color: white; #{wallet.color.blank? ? '' : "background-color: #{wallet.color}"}", onclick: (noclick == false) ? "moveTo('/wallets/#{wallet.id}')" : ""  }
-  - if wallet.icon.blank?
+  - if wallet.wallet_icon.blank?
     %div.bi.bi-wallet
   -else
-    %div.bi{class: "bi-#{wallet.icon}"}
+    %div.bi{class: "bi-#{wallet.wallet_icon.icon}"}
   %p.icon-wallet-name= wallet.name

@@ -150,11 +150,11 @@ class TransactionsController < ApplicationController
 
     @origin = Wallet.new
     @origin.name = t("transaction.404.transaction")
-    @origin.icon = "currency-dollar"
+    @origin.wallet_icon = WalletIcon.from_str("currency-dollar")
 
     @destination = Wallet.new
     @destination.name = t("transaction.404.not_found")
-    @destination.icon = "emoji-frown"
+    @destination.wallet_icon = WalletIcon.from_str("emoji-frown")
   end
 
   private

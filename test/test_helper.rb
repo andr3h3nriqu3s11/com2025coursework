@@ -6,6 +6,12 @@ class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
+  setup do
+    # These is needed since the the characters on the wallet icons are stored there
+    # Not needed since I put the ones that are needed for the test to pass on the fixtures
+    #Rails.application.load_seed
+  end
+
   # Add more helper methods to be used by all tests here...
   #
   def check_header_login

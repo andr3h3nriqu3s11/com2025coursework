@@ -51,11 +51,32 @@ function startup() {
     setUpTransaction();
     setUpHome();
 }
-
+var initial = "";
 function setupCreateNewWallet() {
     $("#wallet_form_name").on('input', function () {
         $(".icon-wallet-name").html($(this).val());
     });
+
+    initial = `bi-${$("#wallet-icon-select option:selected").text()}`
+
+    $("#wallet-icon-select").children().each(function ()
+    {
+        let text = this.innerHTML;
+
+        this.innerHTML = `<span icon='bi bi-${text}'></span>${text}`
+
+    });
+
+    var v = $(".wallet-icon .bi");
+    v.removeClass("bi-wallet");
+    v.addClass(initial);
+
+    $("#wallet-icon-select").change(() => {
+        v.removeClass(initial);
+        initial = `bi-${$("#wallet-icon-select option:selected").text()}`
+        v.addClass(initial);
+    });
+
 }
 
 function setupSignupPage() {

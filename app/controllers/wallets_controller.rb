@@ -32,7 +32,7 @@ class WalletsController < ApplicationController
     # Set up a dummy wallet so that the 404 page can display it correctly
     @wallet = Wallet.new
     @wallet.name = "No wallet found"
-    @wallet.icon = "emoji-frown"
+    @wallet.wallet_icon = WalletIcon.from_str("emoji-frown")
   end
 
   # GET /wallets/new
@@ -175,7 +175,7 @@ class WalletsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def wallet_params
-      params.require(:wallet).permit(:name, :icon, :user_id, :value, :system)
+      params.require(:wallet).permit(:name, :wallet_icon_id, :user_id, :value, :system)
     rescue
       # if some error happens this will make sure that the user is redirected to the 404 page
       @fail_to_get_wallet = true

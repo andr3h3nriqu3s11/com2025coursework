@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_01_173754) do
+ActiveRecord::Schema.define(version: 2021_12_01_175355) do
 
   create_table "transactions", force: :cascade do |t|
     t.string "description"
@@ -44,15 +44,16 @@ ActiveRecord::Schema.define(version: 2021_12_01_173754) do
 
   create_table "wallets", force: :cascade do |t|
     t.string "name", null: false
-    t.string "icon", default: ""
     t.string "color", default: ""
     t.integer "value", default: 0
     t.boolean "system", default: false
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "wallet_icon_id"
     t.index ["name", "user_id"], name: "index_wallets_on_name_and_user_id", unique: true
     t.index ["user_id"], name: "index_wallets_on_user_id"
+    t.index ["wallet_icon_id"], name: "index_wallets_on_wallet_icon_id"
   end
 
 end

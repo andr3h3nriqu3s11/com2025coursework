@@ -1,5 +1,7 @@
 # README
 
+# !For this app to run correctly the db:seed needs to be run!
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 

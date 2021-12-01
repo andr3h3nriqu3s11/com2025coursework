@@ -10,7 +10,6 @@
 
     %div.fira-code.center.full-h= "----------------->"
 
-
     %div.small-spacer
 
     =render "wallets/icon", wallet: @transaction.destination, noclick: false
@@ -29,6 +28,6 @@
       %span= t('form.delete')
 
   %div.flex
-    = render "linkdash"
+    = render "linkdash", force_dash: true
     %div.small-spacer
     = render "fancylinkblue", link: edit_transaction_path(@transaction), title: t("form.edit"), icon: "bi-arrow-right", left_icon: true, margin: true

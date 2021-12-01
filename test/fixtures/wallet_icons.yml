@@ -1,7 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 0
   icon: MyString
 
 two:
-  icon: MyString
+  id: 1
+  icon: MyString2
+
+# There are required for the tests to pass
+three:
+  icon: currency-dollar
+four:
+  icon: box-arrow-in-left
+five:
+  icon: wallet2
+six:
+  icon: emoji-frown

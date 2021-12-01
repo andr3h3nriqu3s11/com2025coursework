@@ -51,7 +51,7 @@ class WalletsControllerTest < ActionDispatch::IntegrationTest
 
   test "should not create wallet - no login" do
     assert_difference('Wallet.count', 0) do
-      post wallets_url, params: { wallet: { icon: @wallet.icon, name: @wallet.name, user_id: @user.id, system: @wallet.system, value: @wallet.value } }
+      post wallets_url, params: { wallet: { wallet_icon_id: @wallet.wallet_icon_id, name: @wallet.name, user_id: @user.id, system: @wallet.system, value: @wallet.value } }
     end
     assert_redirected_to new_user_session_url
   end
@@ -60,14 +60,14 @@ class WalletsControllerTest < ActionDispatch::IntegrationTest
     sign_in @user
 
     assert_difference('Wallet.count') do
-      post wallets_url, params: { wallet: { icon: @wallet.icon, name: "new 1", system: @wallet.system, value: @wallet.value } }
+      post wallets_url, params: { wallet: { wallet_icon_id: @wallet.wallet_icon_id, name: "new 1", system: @wallet.system, value: @wallet.value } }
     end
 
     assert_redirected_to wallet_url(Wallet.last)
 
     assert_difference('Wallet.count', 0) do
       # To assert :unprocessable_entity
-      assert_equal(422, post(wallets_url, params: { wallet: { icon: @wallet.icon, name: "new 1", system: @wallet.system, value: @wallet.value } }))
+      assert_equal(422, post(wallets_url, params: { wallet: { wallet_icon_id: @wallet.wallet_icon_id, name: "new 1", system: @wallet.system, value: @wallet.value } }))
     end
 
 
@@ -78,7 +78,16 @@ class WalletsControllerTest < ActionDispatch::IntegrationTest
     sign_in @user
     assert_difference('Wallet.count', 0) do
       # To assert :forbidden
-      assert_equal(403, post(wallets_url, params: { wallet: { icon: @wallet.icon, name: "new 1", user_id: @user2.id, system: @wallet.system, value: @wallet.value } }))
+      assert_equal(403, post(wallets_url, params: { wallet: { wallet_icon_id: @wallet.wallet_icon_id, name: "new 1", user_id: @user2.id, system: @wallet.system, value: @wallet.value } }))
+    end
+    sign_out @user
+  end
+
+  test "should not create wallet - wrong icon id" do
+    sign_in @user
+    assert_difference('Wallet.count', 0) do
+      # To assert :forbidden
+      post(wallets_url, params: { wallet: { wallet_icon_id: -1, name: "new 1", user_id: @user.id, system: @wallet.system, value: @wallet.value } })
     end
     sign_out @user
   end
@@ -89,7 +98,7 @@ class WalletsControllerTest < ActionDispatch::IntegrationTest
     sign_in @user
     assert_difference('Wallet.count') do
       # You don't need to pass the user id
-      post wallets_url, params: { wallet: { icon: @wallet.icon, name: "new wallet", system: @wallet.system, value: @wallet.value } }
+      post wallets_url, params: { wallet: { wallet_icon_id: @wallet.wallet_icon_id, name: "new wallet", system: @wallet.system, value: @wallet.value } }
     end
 
     assert_redirected_to wallet_url(Wallet.last)
@@ -175,28 +184,36 @@ class WalletsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should not update wallet - no user" do
-    patch wallet_url(@wallet), params: { wallet: { icon: @wallet.icon, name: @wallet.name, value: @wallet.value } }
+    patch wallet_url(@wallet), params: { wallet: { wallet_icon_id: @wallet.wallet_icon_id, name: @wallet.name, value: @wallet.value } }
     assert_redirected_to new_user_session_url
   end
 
   test "should not update wallet - no wallet" do
     sign_in @user
-    patch wallet_url(-1), params: { wallet: { icon: @wallet.icon, name: @wallet.name, value: @wallet.value } }
+    patch wallet_url(-1), params: { wallet: { wallet_icon_id: @wallet.wallet_icon_id, name: @wallet.name, value: @wallet.value } }
     assert_redirected_to wallet404_url
     sign_out @user
   end
 
   test "should not update wallet - wrong user" do
     sign_in @user2
-    patch wallet_url(@wallet), params: { wallet: { icon: @wallet.icon, name: @wallet.name, value: @wallet.value } }
+    patch wallet_url(@wallet), params: { wallet: { wallet_icon_id: @wallet.wallet_icon_id, name: @wallet.name, value: @wallet.value } }
     assert_redirected_to wallet404_url
     sign_out @user2
   end
+
+  test "should not update wallet - wrong wallet id" do
+    sign_in @user
+    patch wallet_url(@wallet), params: { wallet: { wallet_icon_id: -1, name: @wallet.name, value: @wallet.value } }
+    assert_response :unprocessable_entity
+    sign_out @user
+  end
+
   #TODO: a test for the admin
 
   test "should not update wallet - system wallet" do
     sign_in @user
-    patch wallet_url(@wallet2), params: { wallet: { icon: @wallet.icon, name: @wallet.name, value: @wallet.value } }
+    patch wallet_url(@wallet2), params: { wallet: { wallet_icon_id: @wallet.wallet_icon_id, name: @wallet.name, value: @wallet.value } }
     assert_redirected_to wallet_url(@wallet2)
     assert_equal I18n.t("wallet.messages.can_not_be_changed"), flash[:notice]
     sign_out @user
@@ -204,7 +221,7 @@ class WalletsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update wallet" do
     sign_in @user
-    patch wallet_url(@wallet), params: { wallet: { icon: @wallet.icon, name: @wallet.name, value: @wallet.value } }
+    patch wallet_url(@wallet), params: { wallet: { wallet_icon_id: @wallet.wallet_icon_id, name: @wallet.name, value: @wallet.value } }
     assert_redirected_to wallet_url(@wallet)
     sign_out @user
   end

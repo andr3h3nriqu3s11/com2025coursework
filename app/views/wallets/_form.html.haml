@@ -9,10 +9,11 @@
   %div
     = f.label :name
     = f.text_field :name, id: "wallet_form_name", maxlength: 50
+  %div
+    = f.label :wallet_icon
+    = f.collection_select :wallet_icon_id, WalletIcon.all, :id, :icon, {}, {id: "wallet-icon-select"}
+
 
   -# TODO: change the icon
-  -#%div
-  -#  = f.label :icon
-  -#  = f.text_field :icon
 
   = f.submit t("form.save")

@@ -2,6 +2,9 @@ class Wallet < ApplicationRecord
 
   has_many :transactions
 
+  # Weird form a "logic" standpoint but it's the way to do many to one relation ships on rails
+  belongs_to :wallet_icon
+
   belongs_to :user
   #Name is only unique for each user id
   validates :name, uniqueness: { scope: :user_id }
@@ -43,7 +46,7 @@ class Wallet < ApplicationRecord
       w.name = name
       w.system = true
       w.user_id = user_id
-      w.icon = icons[i]
+      w.wallet_icon = WalletIcon.from_str(icons[i])
       w.save
     end
   end
