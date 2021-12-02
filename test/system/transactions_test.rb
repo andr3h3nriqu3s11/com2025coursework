@@ -1,9 +1,9 @@
 require "application_system_test_case"
 
 class TransactionsTest < ApplicationSystemTestCase
-  setup do
-    @transaction = transactions(:one)
-  end
+  # setup do
+  #   @transaction = transactions(:one)
+  # end
 
   # test "visiting the index" do
   #   visit transactions_url

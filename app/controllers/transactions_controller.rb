@@ -72,17 +72,23 @@ class TransactionsController < ApplicationController
 
   # POST /transactions or /transactions.json
   def create
-    @transaction = Transaction.new(transaction_params)
-    respond_to do |format|
-      # If the transaction does not exist or is not form this user redirect to the not found page
-      # See set_transaction for more info
-      if @transaction_not_found
+    params = transaction_params
+    if @transaction_not_found
+      respond_to do |format|
         #defaulted for this message since if this happens the origin id is technically not set
         format.html { redirect_to transaction404_url, notice: I18n.t("transaction.messages.origin_wallet_needed") }
         format.json { render json: { status: 404 }, status: :not_found}
+      end
+      return
+    end
+
+    @transaction = Transaction.new(params)
+    respond_to do |format|
+      # If the transaction does not exist or is not form this user redirect to the not found page
+      # See set_transaction for more info
 
       # Checks for the origin wallet
-      elsif @transaction.origin_id.blank?
+      if @transaction.origin_id.blank?
         format.html { redirect_to new_transaction_url, notice: I18n.t("transaction.messages.origin_wallet_needed") }
         format.json { render json: @transaction.errors, status: :bad_request }
 

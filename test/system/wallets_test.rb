@@ -1,9 +1,9 @@
 require "application_system_test_case"
 
 class WalletsTest < ApplicationSystemTestCase
-  setup do
-    @wallet = wallets(:one)
-  end
+  # setup do
+  #   @wallet = wallets(:one)
+  # end
 
   # test "visiting the index" do
   #   visit wallets_url

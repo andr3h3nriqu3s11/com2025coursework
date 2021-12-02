@@ -68,6 +68,17 @@ class TransactionsControllerTest < ActionDispatch::IntegrationTest
     sign_out @user
   end
 
+  test "should get new with admin" do
+    sign_in @admin
+
+    get new_transaction_url
+    assert_response :success
+
+    check_header_login
+
+    sign_out @admin
+  end
+
   test "should not create transaction - no user" do
     assert_difference('Transaction.count', 0) do
       post transactions_url, params: { transaction: { description: @transaction.description, destination_id: @transaction.destination_id, origin_id: @transaction.origin_id, value: @transaction.value } }
@@ -81,6 +92,15 @@ class TransactionsControllerTest < ActionDispatch::IntegrationTest
       post transactions_url, params: { transaction: { description: @transaction.description, destination_id: @transaction.destination_id, value: @transaction.value } }
     end
     assert_redirected_to new_transaction_url
+    sign_out @user
+  end
+
+  test "should not create transaction - nothing" do
+    sign_in @user
+    assert_difference('Transaction.count', 0) do
+      post transactions_url, params: { }
+    end
+    assert_redirected_to transaction404_url
     sign_out @user
   end
 
