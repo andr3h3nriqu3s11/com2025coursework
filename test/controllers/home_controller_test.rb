@@ -2,6 +2,12 @@ require 'test_helper'
 
 class HomeControllerTest < ActionDispatch::IntegrationTest
 
+  include Devise::Test::IntegrationHelpers
+
+  setup do
+    @user = users(:one)
+  end
+
   test "should get home" do
     get root_url
     assert_response :success
@@ -51,6 +57,15 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
       assert_equal 1, bar_count
 
     end
+  end
+
+  test "should redirect to dashboard" do
+    sign_in @user
+
+    get root_url
+    assert_redirected_to dashboard_url
+
+    sign_out @user
   end
 
 end
