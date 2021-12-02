@@ -65,18 +65,21 @@ class WalletsController < ApplicationController
 
   # POST /wallets or /wallets.json
   def create
-    # Get the params now so that they can be tested for errors
-    @wallet = Wallet.new(wallet_params)
+
+    # run the wallet_params function to look for errors
+    params = wallet_params
 
     # Checks if the wallet was able to be obtained if not redirect to the 404 page
     # check the set_wallet or wallet_params function for more info
     if @fail_to_get_wallet
       respond_to do |format|
-        format.html { render :new, status: :not_found }
+        format.html { redirect_to wallet404_path}
         format.json { render json: {status: 404}, status: :not_found }
       end
       return
     end
+    # Get the params now so that they can be tested for errors
+    @wallet = Wallet.new(params)
 
     #This part guarantees that the wallet can only be created by the user that is logged in
     if @wallet.user_id.blank?

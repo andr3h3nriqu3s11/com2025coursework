@@ -116,7 +116,19 @@ class WalletsControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Wallet.count', 0) do
       # To assert :forbidden
       post(wallets_url, params: { wallet: { wallet_icon_id: -1, name: "new 1", user_id: @user.id, system: @wallet.system, value: @wallet.value } })
+      assert_response :unprocessable_entity
     end
+    sign_out @user
+  end
+
+  test "should not create wallet - no params" do
+    sign_in @user
+
+    assert_difference('Wallet.count', 0) do
+      post wallets_url, params: { }
+      assert_redirected_to wallet404_url
+    end
+
     sign_out @user
   end
 
@@ -209,6 +221,15 @@ class WalletsControllerTest < ActionDispatch::IntegrationTest
     sign_in @user
     get edit_wallet_url(-1)
     assert_redirected_to wallet404_url
+    sign_out @user
+  end
+
+  test "should not get edit - system wallet" do
+    sign_in @user
+
+    get edit_wallet_url(@wallet2)
+    assert_redirected_to wallet_url(@wallet2)
+
     sign_out @user
   end
 
