@@ -10,6 +10,7 @@ class TransactionsControllerTest < ActionDispatch::IntegrationTest
 
     @user = users(:one)
     @user2 = users(:two)
+    @admin = users(:admin)
   end
 
   test "should not get index - no user" do
@@ -32,7 +33,24 @@ class TransactionsControllerTest < ActionDispatch::IntegrationTest
      end
 
      sign_out @user
-   end
+  end
+
+  test "should get index admin" do
+    sign_in @admin
+
+    get transactions_url
+    assert_response :success
+
+    check_header_login
+
+    #Checks that all the transactions from that user are shown
+    assert_select ".transactionLineItem" do |elms|
+      # We remove one for the header line which has the same selector of the rest of the lines
+      assert_equal Transaction.all.length, elms.length - 1
+    end
+
+    sign_out @admin
+  end
 
   test "should not get new - no login" do
     get new_transaction_url
@@ -85,6 +103,15 @@ class TransactionsControllerTest < ActionDispatch::IntegrationTest
     sign_out @user2
   end
 
+  test "should create transaction - origin_id not owned but admin" do
+    sign_in @admin
+    assert_difference('Transaction.count', 1) do
+      post transactions_url, params: { transaction: { description: @transaction.description, destination_id: @transaction.destination_id, origin_id: @transaction.origin_id, value: @transaction.value } }
+    end
+    assert_redirected_to transaction_url(Transaction.last)
+    sign_out @admin
+  end
+
   test "should not create transaction - no value" do
     sign_in @user
     assert_difference('Transaction.count', 0) do
@@ -132,6 +159,13 @@ class TransactionsControllerTest < ActionDispatch::IntegrationTest
     get transaction_url(@transaction)
     assert_redirected_to transaction404_url
     sign_out @user2
+  end
+
+  test "should show transaction - wrong user but admin" do
+    sign_in @admin
+    get transaction_url(@transaction)
+    assert_response :success
+    sign_out @admin
   end
 
   test "should show transaction - at least one origin or destination" do
@@ -192,6 +226,13 @@ class TransactionsControllerTest < ActionDispatch::IntegrationTest
     sign_out @user2
   end
 
+  test "should get edit transaction - wrong user but admin" do
+    sign_in @admin
+    get edit_transaction_url(@transaction)
+    assert_response :success
+    sign_out @admin
+  end
+
   test "should get edit transaction - at least one origin or destination" do
     sign_in @user2
 
@@ -243,6 +284,15 @@ class TransactionsControllerTest < ActionDispatch::IntegrationTest
     sign_out @user2
   end
 
+  test "should destroy transaction - wrong user but admin" do
+    sign_in @admin
+    assert_difference('Transaction.count', -1) do
+      delete transaction_url(@transaction)
+    end
+    assert_redirected_to wallet_url(@transaction.origin.id)
+    sign_out @admin
+  end
+
   test "should not destroy transaction - not origin" do
     sign_in @user2
     delete transaction_url(@transaction2)
@@ -272,10 +322,17 @@ class TransactionsControllerTest < ActionDispatch::IntegrationTest
     sign_out @user2
   end
 
+  test "should update transaction - origin_id not owned but admin" do
+    sign_in @admin
+    patch transaction_url(@transaction), params: { transaction: { description: @transaction.description, destination_id: @transaction.destination_id, origin_id: @transaction.origin_id, value: @transaction.value } }
+    assert_redirected_to transaction_url(@transaction)
+    sign_out @admin
+  end
+
   test "should update transaction" do
     sign_in @user
     patch transaction_url(@transaction), params: { transaction: { description: @transaction.description, destination_id: @transaction.destination_id, origin_id: @transaction.origin_id, value: @transaction.value } }
-    assert_redirected_to transaction_url(Transaction.last)
+    assert_redirected_to transaction_url(@transaction)
     sign_out @user
   end
 

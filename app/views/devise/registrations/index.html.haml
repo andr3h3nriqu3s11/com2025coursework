@@ -1,0 +1,12 @@
+=render "header"
+
+%div.center
+  - if @users.length == 0
+    %h1= t("devise.messages.no-users")
+  - else
+    %h1= t("devise.registrations.index.title")
+    =render "lineItem", header: true, editLink: true
+    - @users.each do |w|
+      =render "lineItem", user: w, editLink: true
+
+  =render "linkdash", force_dash: true

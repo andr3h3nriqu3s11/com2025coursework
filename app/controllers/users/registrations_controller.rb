@@ -2,6 +2,10 @@
 
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
+
+  # Only admin users should see the index
+  before_action :authenticate_user!, only: [:index]
+
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -15,6 +19,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     #super
     #Copyed from Devise::RegistrationControler
     build_resource(sign_up_params)
+
+    # The default created user should be of the type normal
+    resource.user_type = :normal
 
     resource.save
     yield resource if block_given?
@@ -63,7 +70,23 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+  def index
+
+    if current_user.nil?
+      redirect_to new_user_session_url
+      return
+    end
+
+    if current_user.user_type != "admin"
+      redirect_to dashboard_url
+      return
+    end
+
+    @users = User.all
+  end
+
   # protected
+
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params

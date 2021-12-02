@@ -5,7 +5,7 @@ one:
   name: MyString
   wallet_icon_id: 1
   user_id: 0
-  value: 1
+  value: 0
   system: false
 
 two:

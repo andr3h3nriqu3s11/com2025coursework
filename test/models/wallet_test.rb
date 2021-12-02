@@ -6,6 +6,8 @@ class WalletTest < ActiveSupport::TestCase
     @user = users(:one)
     @user1 = users(:two)
 
+    @wallet = wallets(:one)
+
     @icon = wallet_icons(:one)
   end
 
@@ -75,6 +77,36 @@ class WalletTest < ActiveSupport::TestCase
     wallet1.user_id = @user1.id
     wallet1.wallet_icon = @icon
     assert wallet1.save
+  end
+
+  test "By user id" do
+    assert_equal 2, Wallet.by_user_id(users(:one)).length
+  end
+
+  test "By id" do
+    assert_equal 1, Wallet.by_id(wallets(:one).id).length
+  end
+
+  test "By name" do
+    assert_equal 1, Wallet.by_name(wallets(:one).name).length
+  end
+
+  test "By name 2" do
+    assert_equal 2, Wallet.by_name(wallets(:two).name).length
+  end
+
+  test "Update value" do
+    assert_equal 0, @wallet.value
+
+    Wallet.update_value(@wallet)
+
+    assert_equal -1, @wallet.value
+  end
+
+  test "test create default wallets" do
+    assert_difference "Wallet.count", 3 do
+      Wallet.create_default_wallets(users(:admin).id)
+    end
   end
 
 end

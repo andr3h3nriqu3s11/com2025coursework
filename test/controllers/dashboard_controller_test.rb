@@ -6,6 +6,7 @@ class DashboardControllerTest < ActionDispatch::IntegrationTest
 
   def setup
     @user = users(:one)
+    @admin = users(:admin)
   end
 
   test "should not get dashboard" do
@@ -34,6 +35,20 @@ class DashboardControllerTest < ActionDispatch::IntegrationTest
       # We remove one for the header line which has the same selector of the rest of the lines
       assert_equal Transaction.by_user(@user).take(21).length, elms.length - 1
     end
+
+    sign_out @user
+  end
+
+  test "should get dashboard admin" do
+    sign_in @admin
+
+    #This needs to be done since the dashboard is expecting the user to have the wallets that were created at runtime
+    Wallet.create_default_wallets(@user.id)
+
+    get dashboard_dashboard_url
+    assert_response :success
+
+    check_header_login
 
     sign_out @user
   end
