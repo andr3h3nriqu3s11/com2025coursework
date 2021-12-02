@@ -19,7 +19,10 @@ class WalletsController < ApplicationController
     # Checks if the wallet was able to be obtained if not redirect to the 404 page
     # check the set_wallet function for more info
     if (@fail_to_get_wallet)
-      redirect_to wallet404_path
+      respond_to do |f|
+        f.html {redirect_to wallet404_path}
+        f.json {render json: { status: 404 }, status: :not_found}
+      end
       return
     end
 
@@ -68,19 +71,20 @@ class WalletsController < ApplicationController
     # Checks if the wallet was able to be obtained if not redirect to the 404 page
     # check the set_wallet or wallet_params function for more info
     if @fail_to_get_wallet
-      redirect_to wallet404_path
+      respond_to do |format|
+        format.html { render :new, status: :not_found }
+        format.json { render json: {status: 404}, status: :not_found }
+      end
       return
     end
 
     #This part guarantees that the wallet can only be created by the user that is logged in
     if @wallet.user_id.blank?
       @wallet.user_id = current_user.id
-    # TODO: admin
     elsif @wallet.user_id != current_user.id and current_user.user_type != "admin"
-      flash[:alert] = I18n.t("wallet.messages.can_only_create_for_yourself")
       respond_to do |format|
-        format.html { render :new, status: :forbidden }
-        format.json { render json: @wallet.errors, status: :forbidden }
+        format.html { render :new, status: :forbidden, notice: I18n.t("wallet.messages.can_only_create_for_yourself") }
+        format.json { render json: {status: 403}, status: :forbidden }
       end
       return
     end
@@ -105,19 +109,28 @@ class WalletsController < ApplicationController
     # Checks if the wallet was able to be obtained if not redirect to the 404 page
     # check the set_wallet function for more info
     if @fail_to_get_wallet
-      redirect_to wallet404_path
+      respond_to do |format|
+        format.html { redirect_to wallet404_url  }
+        format.json { render json: {status: 404}, status: :not_found }
+      end
       return
     end
 
     # If the wallet is a system wallet it can not be edited so redirect back to the show page
     # and show the error message
     if @wallet.system
-      flash[:notice] = I18n.t("wallet.messages.can_not_be_changed")
-      redirect_to wallet_path(@wallet)
+      respond_to do |format|
+        format.html { redirect_to @wallet, notice: I18n.t("wallet.messages.can_not_be_changed") }
+        format.json { render json: {
+          status: 403,
+          message: I18n.t("wallet.messages.can_not_be_changed")
+        }, status: :forbidden }
+      end
       return
     end
 
     respond_to do |format|
+
       if @wallet.update(params)
         format.html { redirect_to @wallet, notice: I18n.t("wallet.messages.wallet_updated_success") }
         format.json { render :show, status: :ok, location: @wallet }
@@ -134,15 +147,24 @@ class WalletsController < ApplicationController
     # Checks if the wallet was able to be obtained if not redirect to the 404 page
     # check the set_wallet function for more info
     if (@fail_to_get_wallet)
-      redirect_to wallet404_path
+      respond_to do |format|
+        format.html { redirect_to wallet404_path }
+        format.json { render json: {
+          status: 404
+        }, status: :not_found }
+      end
       return
     end
 
     # If the wallet is a system wallet it can not be edited so redirect back to the show page
     # and show the error message
     if @wallet.system
-      flash[:notice] = I18n.t("wallet.messages.can_not_be_changed")
-      redirect_to wallet_path(@wallet)
+      respond_to do |format|
+        format.html { redirect_to wallet_path(@wallet), notice: I18n.t("wallet.messages.can_not_be_changed") }
+        format.json { render json: {
+          status: 403
+        }, status: :forbidden }
+      end
       return
     end
 

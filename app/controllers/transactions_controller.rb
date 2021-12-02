@@ -19,7 +19,10 @@ class TransactionsController < ApplicationController
     # If the transaction does not exist or is not form this user redirect to the not found page
     # See set_transaction for more info
     if @transaction_not_found
-      redirect_to transaction404_url
+      respond_to do |f|
+        f.html {redirect_to transaction404_url}
+        f.json { render json: { status: 404 }, status: 404}
+      end
       return
     end
   end
@@ -76,7 +79,7 @@ class TransactionsController < ApplicationController
       if @transaction_not_found
         #defaulted for this message since if this happens the origin id is technically not set
         format.html { redirect_to transaction404_url, notice: I18n.t("transaction.messages.origin_wallet_needed") }
-        format.json { render json: @transaction.errors, status: :bad_request }
+        format.json { render json: { status: 404 }, status: :not_found}
 
       # Checks for the origin wallet
       elsif @transaction.origin_id.blank?
@@ -112,7 +115,7 @@ class TransactionsController < ApplicationController
       if @transaction_not_found
         #defaulted for this message since if this happens the origin id is technically not set
         format.html { redirect_to transaction404_url, notice: I18n.t("transaction.messages.origin_wallet_needed") }
-        format.json { render json: @transaction.errors, status: :bad_request }
+        format.json { render json: { status: 404 }, status: :not_found}
 
       elsif @transaction.update(transaction_params)
         format.html { redirect_to @transaction, notice: I18n.t("transaction.messages.transaction_update_success") }
@@ -130,7 +133,10 @@ class TransactionsController < ApplicationController
     # If the transaction does not exist or is not form this user redirect to the not found page
     # See set_transaction for more info
     if @transaction_not_found
-      redirect_to transaction404_url
+      respond_to do |f|
+        f.html {redirect_to transaction404_url}
+        f.json { render json: { status: 404 }, status: :not_found}
+      end
       return
     end
 
@@ -139,8 +145,10 @@ class TransactionsController < ApplicationController
     # See set_transaction for more info
     # Skip this step if admin
     if @origin_not_owned and current_user.user_type != "admin"
-      flash[:alert] = t("transaction.messages.origin not owned")
-      redirect_to transaction_url(@transaction)
+      respond_to do |f|
+        f.html {redirect_to transaction_url(@transaction), notice: I18n.t("transaction.messages.origin not owned")}
+        f.json { render json: { status: 403 }, status: :forbidden}
+      end
       return
     end
 
