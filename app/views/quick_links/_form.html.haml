@@ -1,0 +1,19 @@
+= form_for @quick_link do |f|
+  - if @quick_link.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@quick_link.errors.count, "error")} prohibited this quick_link from being saved:"
+      %ul
+        - @quick_link.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :origin_id
+    = f.text_field :origin_id
+  .field
+    = f.label :destination_id
+    = f.text_field :destination_id
+  .actions
+    = f.submit 'Save'

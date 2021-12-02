@@ -1,0 +1,2 @@
+class QuickLink < ApplicationRecord
+end

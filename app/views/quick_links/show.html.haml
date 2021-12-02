@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @quick_link.name
+%p
+  %b Origin:
+  = @quick_link.origin_id
+%p
+  %b Destination:
+  = @quick_link.destination_id
+
+= link_to 'Edit', edit_quick_link_path(@quick_link)
+\|
+= link_to 'Back', quick_links_path
