@@ -14,3 +14,9 @@ two:
   encrypted_password: nothing
   id: 1
 
+admin:
+  email: "test3@test.test"
+  encrypted_password: nothing
+  id: 2
+  user_type: 1
+

@@ -6,6 +6,6 @@ class WalletIcon < ApplicationRecord
 
   validates_presence_of :icon
 
-  scope :from_str, -> (str) { where(["icon = ?", str]).first }
+  scope :from_str, -> (str) { where(["icon = ?", str]).first! }
 
 end

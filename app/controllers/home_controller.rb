@@ -11,8 +11,6 @@ class HomeController < ApplicationController
     @wallet.name = "This is a wallet"
     @wallet.wallet_icon = WalletIcon.from_str("wallet")
 
-    puts @wallet.wallet_icon.icon
-    puts @wallet.wallet_icon
 
     @walletIn = Wallet.new
     @walletIn.wallet_icon = WalletIcon.from_str("wallet")

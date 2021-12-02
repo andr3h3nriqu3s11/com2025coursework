@@ -1,0 +1,16 @@
+@import "../variables";
+
+.userLineItem {
+  display: grid;
+  grid-template-columns: 30ch;
+  //column-gap: 40px;
+  margin-top: 10px;
+
+  text-align: center;
+
+  font-family: 'Fira Code', monospace;
+
+  &.withLink {
+    grid-template-columns: 30ch 12ch;
+  }
+}

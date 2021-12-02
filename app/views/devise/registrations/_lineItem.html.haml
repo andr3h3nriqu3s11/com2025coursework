@@ -1,0 +1,11 @@
+-if defined? header and header
+  .userLineItem
+    %span=t("form.email")
+-else
+  .userLineItem
+    %span=user.email
+
+-#  %div.userLineItem{class: (defined?(editLink) and editLink) ?  "withLink" : ""}
+-#  %div.userLineItem{class: (defined?(editLink) and editLink) ?  "withLink" : ""}
+-#    - if defined?(editLink) and editLink
+-#      =render "fancylinkblue", left_icon: true, title: t("form.show_more"), link: wallet_url(wallet), icon: "bi-arrow-right"
