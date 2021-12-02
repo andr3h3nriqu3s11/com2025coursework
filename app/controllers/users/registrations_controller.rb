@@ -71,14 +71,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def index
-
     if current_user.nil?
-      redirect_to new_user_session_url
+      respond_to do |f|
+        f.html {redirect_to new_user_session_url}
+        f.json {render json: {status: 403}, status: :forbidden}
+      end
       return
     end
 
     if current_user.user_type != "admin"
-      redirect_to dashboard_url
+      respond_to do |f|
+        f.html {redirect_to dashboard_url}
+        f.json {render json: {status: 403}, status: :forbidden}
+      end
       return
     end
 

@@ -1,2 +1,2 @@
-json.extract! transaction, :id, :description, :origin, :destination, :value, :created_at, :updated_at
+json.extract! transaction, :id, :description, :origin_id, :destination_id, :value, :created_at, :updated_at
 json.url transaction_url(transaction, format: :json)
