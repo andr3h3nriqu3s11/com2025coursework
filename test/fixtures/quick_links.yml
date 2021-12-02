@@ -2,10 +2,15 @@
 
 one:
   name: MyString
-  origin_id: 
-  destination_id: 
+  origin_id: 1
+  destination_id: 2
 
 two:
   name: MyString
-  origin_id: 
-  destination_id: 
+  origin_id: 1
+  destination_id: 3
+
+three:
+  name: MyString
+  origin_id: 3
+  destination_id: 1
