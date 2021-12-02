@@ -1529,3 +1529,5 @@ WalletIcon.create!(icon: "youtube")
 WalletIcon.create!(icon: "zoom-in")
 WalletIcon.create!(icon: "zoom-out")
 
+User.create!(email: "admin@andr3h3nriqu3s.com", user_type: "admin", password: "admin1234")
+

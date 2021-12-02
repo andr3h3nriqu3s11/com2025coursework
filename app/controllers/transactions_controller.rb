@@ -4,9 +4,11 @@ class TransactionsController < ApplicationController
 
   # GET /transactions or /transactions.json
   def index
-    #TODO
-    #Check if admin
-    #@transactions = Transaction.all
+    #Check if admin and if so show all transactions
+    if current_user.user_type == "admin"
+      @transactions = Transaction.all
+      return
+    end
 
     # Gets all transactions
     @transactions = Transaction.by_user(current_user)
@@ -34,6 +36,11 @@ class TransactionsController < ApplicationController
 
     if defined? params[:destination_id]
       @transaction.destination_id = params[:destination_id]
+    end
+
+    # If the user is an admin skip the last verification step
+    if current_user.user_type == "admin"
+      return
     end
 
     user_wallets = Wallet.by_user(current_user)
@@ -82,7 +89,8 @@ class TransactionsController < ApplicationController
         format.json { render json: @transaction.errors, status: :bad_request }
 
       # Checks if the user is trying to create a transaction where the origin is from another user
-      elsif @transaction.origin.user_id != current_user.id
+      # Skip this step if admin
+      elsif @transaction.origin.user_id != current_user.id and current_user.user_type != "admin"
         format.html { redirect_to new_transaction_url, notice: I18n.t("transaction.messages.origin_not_owned") }
         format.json { render json: @transaction.errors, status: :forbidden }
 
@@ -129,7 +137,8 @@ class TransactionsController < ApplicationController
     # Checks if the origin of this transaction is owned by the user and if not it does not allow the use to delete the
     # transaction
     # See set_transaction for more info
-    if @origin_not_owned
+    # Skip this step if admin
+    if @origin_not_owned and current_user.user_type != "admin"
       flash[:alert] = t("transaction.messages.origin not owned")
       redirect_to transaction_url(@transaction)
       return
@@ -175,7 +184,8 @@ class TransactionsController < ApplicationController
       end
       # if the user is not owner of the destination or origin wallet then the user can not
       # access this transaction
-      if @origin_not_owned and @destination_not_owned
+      # If admin ignore this rule
+      if @origin_not_owned and @destination_not_owned and current_user.user_type != "admin"
         @transaction_not_found = true
       end
     rescue

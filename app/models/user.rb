@@ -8,4 +8,6 @@ class User < ApplicationRecord
 
   enum user_type: [:normal, :admin]
 
+  validates_presence_of :user_type
+
 end

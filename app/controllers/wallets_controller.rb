@@ -4,10 +4,10 @@ class WalletsController < ApplicationController
 
   # GET /wallets or /wallets.json
   def index
-
-    # TODO show all if admin
-    # @wallets = Wallet.all
-
+    if current_user.user_type == "admin"
+      @wallets = Wallet.all
+      return
+    end
 
     # Gets all the wallets related to this user
     @wallets = Wallet.by_user(current_user)
@@ -72,12 +72,11 @@ class WalletsController < ApplicationController
       return
     end
 
-
     #This part guarantees that the wallet can only be created by the user that is logged in
     if @wallet.user_id.blank?
       @wallet.user_id = current_user.id
     # TODO: admin
-    elsif @wallet.user_id != current_user.id
+    elsif @wallet.user_id != current_user.id and current_user.user_type != "admin"
       flash[:alert] = I18n.t("wallet.messages.can_only_create_for_yourself")
       respond_to do |format|
         format.html { render :new, status: :forbidden }
@@ -159,9 +158,8 @@ class WalletsController < ApplicationController
     def set_wallet
       wallet = Wallet.find(params[:id])
 
-      # Only let the current user edit this wallet
-      # TODO: If admin is added add the ability for an admin to also access this wallet
-      if wallet.user_id != current_user.id
+      # Only let the current user edit his own wallet unless is an admin
+      if wallet.user_id != current_user.id and current_user.user_type != "admin"
         @fail_to_get_wallet = true
         return
       end

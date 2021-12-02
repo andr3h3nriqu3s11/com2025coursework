@@ -128,6 +128,9 @@ en:
       sent: "The message was sent successfully we will contact you as soon as possible"
 
   devise:
+    messages:
+      no-users: "No Users"
+
     form:
       login: 'Login'
       signup: 'Signup'
@@ -147,6 +150,8 @@ en:
         login_title: 'Already have an account?'
 
     registrations:
+      index:
+        title: 'Users'
       new:
         title: 'Create your account'
         password_not_meat_minimum: 'Password does not have the minimum number of characters'
@@ -221,6 +226,13 @@ en:
       transactions: "Transactions"
       new_wallet: "Add New Wallet"
       quick_links: "Quick Links"
+
+      admin:
+        transactions: "Transactions"
+        wallets: "Wallets"
+        users: "Users"
+
     quick_links:
       recive: "Received Money"
       expense: "General Expense"
+
