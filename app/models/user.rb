@@ -5,4 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :wallets
+
+  enum user_type: [:normal, :admin]
+
 end
