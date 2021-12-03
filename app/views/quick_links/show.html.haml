@@ -13,6 +13,11 @@
     %b Destination:
     = @quick_link.destination.name
 
+  .naked-btt
+    = button_to quick_link_path(@quick_link), :method => :delete, class: 'rounded big-font' do
+      %span.bi.bi-trash
+      %span= t('form.delete')
+
   .flex
     = render "linkdash", force_dash: true
     .small-v-spacer
