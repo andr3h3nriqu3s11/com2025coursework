@@ -1,7 +1,8 @@
-%h1 Editing quick_link
+=render "header"
 
-= render 'form'
+.center
+  %h1= t("quick_links.edit.title")
 
-= link_to 'Show', @quick_link
-\|
-= link_to 'Back', quick_links_path
+  = render 'form'
+
+  = render "linkdash"

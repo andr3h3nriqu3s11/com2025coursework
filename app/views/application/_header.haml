@@ -6,7 +6,7 @@
     -# To be a bit more efficient
     %p= link_to t(".home"), dashboard_path
 
-  - if defined?(notice) and notice
+  - if defined?(show_notice) and show_notice
     %div.text-center
       = render "notice"
   -else

@@ -21,7 +21,7 @@
         %i= t("devise.form.leave_it_empty")
 
       - if @minimum_password_length
-        %em= "#{@minimum_password_length} #{t("devise.form.character_minimum")}"
+        %em= "#{@minimum_password_length} #{t("devise.form.messages.character_minimum")}"
 
       = f.password_field :password, autocomplete: "new-password"
 
@@ -37,6 +37,13 @@
 
     .actions
       = f.submit t("form.save")
+
+  .flex.space-between.half-h-page.auto-adjust
+    %h3= t("dashboard.dashboard.quick_links")
+    = render "fancylinkblue", left_icon: true, icon: "bi-right-arrow", title: t(".quick_links.add_new"), link: new_quick_link_path, margin: true
+
+  %div
+    = render "quick_links/quick_links_List", editLink: true
 
   %h3= t(".cancel_my_account.title")
 

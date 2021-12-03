@@ -152,6 +152,11 @@ class WalletsControllerTest < ActionDispatch::IntegrationTest
 
     check_header_login
 
+    #Checks that all Quick links are shown
+    assert_select ".quick-links .fancy-link.blue-haze" do |elms|
+      assert_equal QuickLink.by_user(@user).length, elms.length
+    end
+
     sign_out @user
   end
 

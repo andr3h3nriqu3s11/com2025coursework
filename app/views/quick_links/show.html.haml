@@ -1,15 +1,19 @@
-%p#notice= notice
+=render "header"
+.center
+  %p#notice= notice
 
-%p
-  %b Name:
-  = @quick_link.name
-%p
-  %b Origin:
-  = @quick_link.origin_id
-%p
-  %b Destination:
-  = @quick_link.destination_id
+  %p
+    %b Name:
+    = @quick_link.name
 
-= link_to 'Edit', edit_quick_link_path(@quick_link)
-\|
-= link_to 'Back', quick_links_path
+  %p
+    %b Origin:
+    = @quick_link.origin.name
+  %p
+    %b Destination:
+    = @quick_link.destination.name
+
+  .flex
+    = render "linkdash", force_dash: true
+    .small-v-spacer
+    = render "fancylinkblue", link: edit_quick_link_path(@quick_link), title: t("form.edit"), left_icon: true, margin: true

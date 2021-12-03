@@ -12,14 +12,16 @@ class ContactControllerTest < ActionDispatch::IntegrationTest
   # Only this test is being done since it was the only controller action that I changed from the
   # the default devise ones
   test "create new user" do
-    assert_difference "Wallet.count", 3 do
-      # The root path is the same as the users path see the routes file and the base path has been
-      # set to "" which makes it the root path
-      post root_path, params: { user: {
-        email: "email@email.eamil",
-        password: "testtest",
-        password_repeat: "testtest"
-      }}
+    assert_difference "QuickLink.count", 2 do
+      assert_difference "Wallet.count", 3 do
+        # The root path is the same as the users path see the routes file and the base path has been
+        # set to "" which makes it the root path
+        post root_path, params: { user: {
+          email: "email@email.eamil",
+          password: "testtest",
+          password_repeat: "testtest"
+        }}
+      end
     end
 
     assert_redirected_to root_url
@@ -53,6 +55,28 @@ class ContactControllerTest < ActionDispatch::IntegrationTest
     end
 
     sign_out @admin
+  end
+
+  test "edit page" do
+    sign_in @user
+
+    get edit_user_registration_path
+
+    #
+    check_header_login
+
+    #Checks that all the quick links from that user are shown
+    assert_select ".quick-linkLineItem" do |elms|
+      # We remove one for the header line which has the same selector of the rest of the lines
+      assert_equal QuickLink.by_user(@user).length, elms.length - 1
+    end
+
+    sign_out @admin
+  end
+
+  test "should not get edit page - no user" do
+    get edit_user_registration_path
+    assert_redirected_to new_user_session_url
   end
 
 end
