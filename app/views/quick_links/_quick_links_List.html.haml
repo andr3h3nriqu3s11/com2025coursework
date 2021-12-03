@@ -1,0 +1,6 @@
+- if @quick_links.length == 0
+  %h1= t("quick_links.messages.no_quick_links")
+- else
+  =render "quick_links/lineItem", header: true, editLink: (defined?(editLink) and editLink)
+  - @quick_links.each do |q|
+    =render "quick_links/lineItem", quick_link: q, editLink: (defined?(editLink) and editLink)

@@ -1,0 +1,7 @@
+=render "header"
+
+.center
+  %h1= t("quick_links.new.title")
+
+  = render 'form'
+  = render "fancylinkblue", link: edit_user_registration_path, title: t("form.messages.go_back"), margin: true

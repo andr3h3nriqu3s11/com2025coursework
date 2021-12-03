@@ -6,8 +6,8 @@
       %h1= t(".quick_links")
       .small-v-spacer
       .flex.small-gap.big-font
-        =render "fancylinkblue", icon: "", title: t("dashboard.quick_links.recive"), link: new_transaction_path(:origin_id => Wallet.by_user(current_user).by_name(t("wallet.default.incomings")).first.id, :destination_id => Wallet.by_user(current_user).by_name(t("wallet.default.net-worth")).first.id)
-        =render "fancylinkblue", icon: "", title: t("dashboard.quick_links.expense"), link: new_transaction_path(:origin_id => Wallet.by_user(current_user).by_name(t("wallet.default.net-worth")).first.id, :destination_id => Wallet.by_user(current_user).by_name(t("wallet.default.expenses")).first.id)
+        - @quicklinks.each do |q|
+          = render "fancylinkblue", icon: "", title: q.name, link: new_transaction_path(:origin_id => q.origin_id, :destination_id => q.destination_id)
 
     .wallets
       .flex.space-between.align-center.rails-btt-center.naked-btt

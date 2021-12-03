@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_02_141102) do
+ActiveRecord::Schema.define(version: 2021_12_02_213453) do
+
+  create_table "quick_links", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "origin_id", null: false
+    t.integer "destination_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["destination_id"], name: "index_quick_links_on_destination_id"
+    t.index ["origin_id"], name: "index_quick_links_on_origin_id"
+  end
 
   create_table "transactions", force: :cascade do |t|
     t.string "description"

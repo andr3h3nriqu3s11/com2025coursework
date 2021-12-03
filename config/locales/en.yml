@@ -163,6 +163,8 @@ en:
           title: "Cancel My Account"
           subtitle: "Unhappy"
           button: "Cancel My Account"
+        quick_links:
+          add_new:
 
     passwords:
       new:
@@ -236,3 +238,23 @@ en:
       recive: "Received Money"
       expense: "General Expense"
 
+  quick_links:
+
+    messages:
+      no_quick_links: "You don't have quick links"
+      error_explanation: "prohibited this quick_link from being saved:"
+      not_found: "Quick link not found"
+      success_create: "Quick link was successfully created."
+      success_update: "Quick link was successfully updated."
+
+    title: "Quick Links"
+
+    new:
+      title: "New Quick Link"
+
+    edit:
+      title: "Edit Quick Link"
+
+    default:
+      receive: "Receive Money"
+      expenses: "General Expense"

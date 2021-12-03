@@ -1,0 +1,14 @@
+-if defined? header and header
+  %div.quick-linkLineItem{class: (defined?(editLink) and editLink) ?  "withLink" : ""}
+    %span=t(".origin")
+    %span="--------->"
+    %span=t(".destination")
+    %span=t(".name")
+-else
+  %div.quick-linkLineItem{class: (defined?(editLink) and editLink) ?  "withLink" : ""}
+    %span=quick_link.origin.name
+    %span="--------->"
+    %span=quick_link.destination.name
+    %span=quick_link.name
+    - if defined?(editLink) and editLink
+      =render "fancylinkblue", left_icon: true, title: t("form.show_more"), link: quick_link_url(quick_link), icon: "bi-arrow-right"

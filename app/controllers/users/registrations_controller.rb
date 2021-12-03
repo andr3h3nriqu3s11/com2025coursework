@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  before_action :configure_sign_up_params, only: [:create]
+  before_action :configure_sign_up_params, only: [:create, :edit]
 
   # Only admin users should see the index
   before_action :authenticate_user!, only: [:index]
@@ -29,6 +29,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
       #Only create the default wallets if the user was created
       Wallet.create_default_wallets(resource.id)
+      QuickLink.create_default_quicklinks(resource.id)
 
       if resource.active_for_authentication?
         set_flash_message! :notice, :signed_up
@@ -47,9 +48,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+
+    @quick_links = QuickLink.by_user(current_user)
+
+    # From the super class
+    render :edit
+  end
 
   # PUT /resource
   # def update

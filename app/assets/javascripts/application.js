@@ -50,6 +50,7 @@ function startup() {
     setupCreateNewWallet();
     setUpTransaction();
     setUpHome();
+    setUpQuickLink();
 }
 var initial = "";
 function setupCreateNewWallet() {
@@ -121,6 +122,31 @@ function setUpTransaction() {
     let origin = "#transaction_origin_id";
     let destination = "#transaction_destination_id";
     $('#transaction_form').submit(function (e) {
+        if ($(origin).val() == $(destination).val()) {
+            $('#destination_same').show();
+            $(destination).addClass('form-fail');
+            e.stopPropagation();
+            e.preventDefault();
+        } else {
+            $('#destination_same').hide();
+            $(destination).removeClass('form-fail');
+        }
+    });
+    $(destination).change(function () {
+        if ($(origin).val() == $(this).val()) {
+            $('#destination_same').show();
+            $(destination).addClass('form-fail');
+        } else {
+            $('#destination_same').hide();
+            $(destination).removeClass('form-fail');
+        }
+    });
+}
+
+function setUpQuickLink() {
+    let origin = "#quick_link_origin_id";
+    let destination = "#quick_link_destination_id";
+    $('#quick_link_form').submit(function (e) {
         if ($(origin).val() == $(destination).val()) {
             $('#destination_same').show();
             $(destination).addClass('form-fail');

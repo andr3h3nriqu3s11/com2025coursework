@@ -36,6 +36,11 @@ class DashboardControllerTest < ActionDispatch::IntegrationTest
       assert_equal Transaction.by_user(@user).take(21).length, elms.length - 1
     end
 
+    #Checks that all Quick links are shown
+    assert_select ".quick-links .fancy-link.blue-haze" do |elms|
+      assert_equal QuickLink.by_user(@user).length, elms.length
+    end
+
     sign_out @user
   end
 

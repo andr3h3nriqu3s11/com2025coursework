@@ -29,6 +29,9 @@ class WalletsController < ApplicationController
     # get the wallet
     @transactions = Transaction.by_wallet(@wallet)
     Wallet.update_value(@wallet)
+
+    #Get quick links for the walelt
+    @quicklinks = QuickLink.by_wallet(@wallet)
   end
 
   def wallet404
@@ -203,4 +206,5 @@ class WalletsController < ApplicationController
       # if some error happens this will make sure that the user is redirected to the 404 page
       @fail_to_get_wallet = true
     end
+
 end

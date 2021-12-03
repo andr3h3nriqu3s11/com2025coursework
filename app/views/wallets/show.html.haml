@@ -22,4 +22,12 @@
       %div
       =render "fancylinkblue", link: new_transaction_path(:origin_id => @wallet.id), left_icon: true, icon: "bi-arrow-right", title: t("wallet.show.new_transaction"), margin: true
 
+  -if @quicklinks.length > 0
+    .quick-links.center
+      %h1= t(".quick_links")
+      .small-v-spacer
+      .flex.small-gap.big-font
+        - @quicklinks.each do |q|
+          = render "fancylinkblue", icon: "", title: q.name, link: new_transaction_path(:origin_id => q.origin_id, :destination_id => q.destination_id)
+
   =render "transactions/transactionsList", noLinkList: true
