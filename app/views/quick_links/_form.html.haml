@@ -1,0 +1,23 @@
+= form_for @quick_link, html: {class: "center", id: 'quick_link_form'} do |f|
+  - if @quick_link.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@quick_link.errors.count, "error")} #{t("quick_links.messages.error_explanation")}"
+      %ul
+        - @quick_link.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :name
+    = f.text_field :name, required: true
+
+  %div
+    = f.label :origin
+    = f.collection_select :origin_id, Wallet.by_user(current_user), :id, :name, {}, { disabled: @origin_not_owned }
+
+  %div
+    = f.label :destination
+    = f.collection_select :destination_id, Wallet.by_user(current_user), :id, :name, {}, {disabled: @destination_not_owned}
+    %p#destination_same.danger{hidden: true}= t("transaction.form.destination_same")
+
+  .actions
+    = f.submit t("form.save")
