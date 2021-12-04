@@ -4,7 +4,7 @@
   = render 'notice'
   = render 'wallets/icon', wallet: @wallet, noclick: true
   %p
-    %b Value:
+    %b= "#{t("form.value")}:"
     = @wallet.value
 
   - if not @wallet.system

@@ -71,9 +71,16 @@ en:
             The sentence above referred to \"currency\" instead of pounds or dollars as of now the system does not the care if you are storing dollars, pounds or potatoes, it will treat every as the same \"unit\"!<br>
           "
 
+      wallets:
+        this_is_wallet: "This is a wallet"
+        in: "In"
+        out: "Out"
+
       ready_to_begin:
         title: "Ready to begin"
         sign_up: "Sign up"
+
+
 
   application:
     header:
@@ -96,6 +103,14 @@ en:
 
     email: "Email"
     enter_email: "Enter Email"
+
+    value: "Value"
+
+    description: "Description"
+
+    origin: "Origin"
+
+    destination: "Destination"
 
     submit: "Submit"
     send: "Send"
@@ -159,6 +174,7 @@ en:
 
       edit:
         title: "Edit Profile"
+        require_password: "(we need your current password to confirm your changes)"
         cancel_my_account:
           title: "Cancel My Account"
           subtitle: "Unhappy"
@@ -199,27 +215,26 @@ en:
     no_reply: "no-reply@andr3h3nriqu3s.com"
 
   wallet:
-
+    new:
+      title: "New wallet"
     edit:
       title: "Editing Wallet"
-
     default:
       expenses: 'Expenses'
       incomings: 'Incomings'
       net-worth: 'Net Worth'
-
     show:
       new_transaction: "New Transaction"
-
     messages:
       error: "Error"
       after_error_message: "prohibited this wallet from being saved:"
-
       can_not_be_changed: 'This Wallet is a system wallet and can not be changed'
       can_only_create_for_yourself: 'You can only create a wallet for yourself'
       wallet_created_success: "Wallet was successfully created."
       wallet_updated_success: "Wallet was successfully updated."
       wallet_destroyed_success: "Wallet was successfully deleted."
+    wallet404:
+      walletName: "Wallet not found"
 
   dashboard:
     dashboard:
@@ -246,6 +261,7 @@ en:
       not_found: "Quick link not found"
       success_create: "Quick link was successfully created."
       success_update: "Quick link was successfully updated."
+      success_destory: "Quick link was successfully deleted."
 
     title: "Quick Links"
 

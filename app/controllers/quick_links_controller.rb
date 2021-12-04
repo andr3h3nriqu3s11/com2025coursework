@@ -100,7 +100,7 @@ class QuickLinksController < ApplicationController
 
     @quick_link.destroy
     respond_to do |format|
-      format.html { redirect_to edit_user_registration_url, notice: "Quick link was successfully destroyed." }
+      format.html { redirect_to edit_user_registration_url, notice: I18n.t("quick_links.messages.success_destory") }
       format.json { head :no_content }
     end
   end

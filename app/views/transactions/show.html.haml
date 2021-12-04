@@ -15,11 +15,11 @@
     =render "wallets/icon", wallet: @transaction.destination, noclick: false
 
   %p
-    %b Value:
+    %b= "#{t("form.value")}:"
     = @transaction.value
 
   %p
-    %b Description:
+    %b= "#{t("form.description")}:"
     = @transaction.description
 
   %div.naked-btt

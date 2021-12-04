@@ -37,7 +37,7 @@ class WalletsController < ApplicationController
   def wallet404
     # Set up a dummy wallet so that the 404 page can display it correctly
     @wallet = Wallet.new
-    @wallet.name = "No wallet found"
+    @wallet.name = I18n.t("wallet.wallet404.walletName")
     @wallet.wallet_icon = WalletIcon.from_str("emoji-frown")
   end
 

@@ -172,11 +172,11 @@ class TransactionsController < ApplicationController
     # display the images for the wallets
 
     @origin = Wallet.new
-    @origin.name = t("transaction.404.transaction")
+    @origin.name = I18n.t("transaction.404.transaction")
     @origin.wallet_icon = WalletIcon.from_str("currency-dollar")
 
     @destination = Wallet.new
-    @destination.name = t("transaction.404.not_found")
+    @destination.name = I18n.t("transaction.404.not_found")
     @destination.wallet_icon = WalletIcon.from_str("emoji-frown")
   end
 

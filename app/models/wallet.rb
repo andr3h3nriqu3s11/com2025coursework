@@ -3,7 +3,6 @@ class Wallet < ApplicationRecord
   has_many :transactions
   has_many :quick_links
 
-  # Weird form a "logic" standpoint but it's the way to do many to one relation ships on rails
   belongs_to :wallet_icon
 
   belongs_to :user

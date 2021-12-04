@@ -3,14 +3,14 @@
   %p#notice= notice
 
   %p
-    %b Name:
+    %b= "#{t("form.name")}:"
     = @quick_link.name
 
   %p
-    %b Origin:
+    %b= "#{t("form.origin")}:"
     = @quick_link.origin.name
   %p
-    %b Destination:
+    %b= "#{t("form.destination")}:"
     = @quick_link.destination.name
 
   .naked-btt
