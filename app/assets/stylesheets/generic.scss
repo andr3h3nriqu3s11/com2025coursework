@@ -77,19 +77,16 @@
 .limit-size-center {
   max-width: 60vw;
   overflow-wrap: break-word;
+  @media screen and (max-width: 700px) {
+      max-width: 90vw;
+
+      h2 {
+        width: 100%;
+      }
+  }
+
 }
 
-@media screen and (max-width: 700px){
-  .limit-size-center {
-    max-width: 80vw;
-  }
-}
-
-@media screen and (max-width: 500px){
-  .limit-size-center {
-    max-width: 90vw;
-  }
-}
 
 .fancy-link {
   @include fancy-links;
