@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+WalletIcon.destroy_all
 WalletIcon.create!(icon: "123")
 WalletIcon.create!(icon: "activity")
 WalletIcon.create!(icon: "alarm")
@@ -1529,5 +1530,6 @@ WalletIcon.create!(icon: "youtube")
 WalletIcon.create!(icon: "zoom-in")
 WalletIcon.create!(icon: "zoom-out")
 
+User.where(["email = ?", "admin@andr3h3nriqu3s.com"]).destroy_all
 User.create!(email: "admin@andr3h3nriqu3s.com", user_type: "admin", password: "admin1234")
 
