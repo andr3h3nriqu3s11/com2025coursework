@@ -1,4 +1,5 @@
 class ContactController < ApplicationController
+
   def contact
   end
 
@@ -17,8 +18,9 @@ class ContactController < ApplicationController
       flash[:alert] = I18n.t('form.messages.no_subject')
     else
       flash[:notice] = I18n.t('contact.messages.sent')
-      ContactMailer.contact_email(email, name, subject, message)
+      ContactMailer.contact_email(email, name, subject, message).deliver_now
     end
     redirect_to contact_path
   end
+
 end
