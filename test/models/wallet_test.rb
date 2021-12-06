@@ -109,4 +109,14 @@ class WalletTest < ActiveSupport::TestCase
     end
   end
 
+  test "Should destroy links and transactions" do
+    assert_difference "Wallet.count", -1 do
+      assert_difference "Transaction.count", -3 do
+        assert_difference "QuickLink.count", -3 do
+          @wallet.destroy
+        end
+      end
+    end
+  end
+
 end

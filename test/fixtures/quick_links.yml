@@ -1,16 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  name: MyString1
   origin_id: 1
   destination_id: 2
 
 two:
-  name: MyString
+  name: MyString2
   origin_id: 1
   destination_id: 3
 
 three:
-  name: MyString
+  name: MyString3
   origin_id: 3
   destination_id: 1
