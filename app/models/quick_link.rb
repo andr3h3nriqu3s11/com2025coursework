@@ -18,7 +18,7 @@ class QuickLink < ApplicationRecord
   }
 
   scope :create_default_quicklinks, -> (user_id) do
-    names = [ I18n.t("quicklinks.default.receive"), I18n.t("quicklinks.default.expenses")]
+    names = [ I18n.t("quick_links.default.receive"), I18n.t("quick_links.default.expenses")]
     userWallets = Wallet.by_user_id(user_id)
     destination = [ userWallets.by_name(I18n.t("wallet.default.incomings")).first!, userWallets.by_name(I18n.t("wallet.default.net-worth")).first! ]
     origin = [userWallets.by_name(I18n.t("wallet.default.net-worth")).first!, userWallets.by_name(I18n.t("wallet.default.expenses")).first! ]

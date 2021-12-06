@@ -32,7 +32,7 @@
     .field
       = f.label :current_password do
         %span= t("devise.form.current_password")
-        %i= "(we need your current password to confirm your changes)"
+        %i= t("devise.registrations.edit.require_password")
       = f.password_field :current_password, autocomplete: "current-password"
 
     .actions

@@ -2,6 +2,10 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
 
+  setup do
+    @user = users(:one)
+  end
+
   test "Should not create" do
     refute User.new.save
   end
@@ -41,6 +45,19 @@ class UserTest < ActiveSupport::TestCase
     u.password = "test"
     assert_raise do
       u.user_type = 3
+    end
+  end
+
+  test "should delete user" do
+
+    assert_difference "User.count", -1 do
+      assert_difference "Wallet.count", -2 do
+        assert_difference "Transaction.count", -3 do
+          assert_difference "QuickLink.count", -3 do
+            @user.destroy
+          end
+        end
+      end
     end
   end
 

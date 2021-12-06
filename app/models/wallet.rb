@@ -1,9 +1,13 @@
 class Wallet < ApplicationRecord
 
-  has_many :transactions
-  has_many :quick_links
+  has_many :transactions, -> (wallet) {
+    unscope(:where).where(["origin_id = ? or destination_id = ?", wallet.id, wallet.id])
+  }, dependent: :destroy
 
-  # Weird form a "logic" standpoint but it's the way to do many to one relation ships on rails
+  has_many :quick_links, -> (wallet) {
+    unscope(:where).where(["origin_id = ? or destination_id = ?", wallet.id, wallet.id])
+  }, dependent: :destroy
+
   belongs_to :wallet_icon
 
   belongs_to :user

@@ -2,25 +2,4 @@
 
 # !For this app to run correctly the db:seed needs to be run!
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The partials where put on the `app/views/application` because after rails 4 it's where you are supposed to put it instead of `app/views/shared` folder [source](https://guides.rubyonrails.org/layouts_and_rendering.html#layout-inheritance) 

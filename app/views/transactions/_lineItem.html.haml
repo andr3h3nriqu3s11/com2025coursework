@@ -1,10 +1,10 @@
 -if defined? header and header
   %div.transactionLineItem{class: (defined?(editLink) and editLink) ?  "withLink" : ""}
-    %span=t(".origin")
+    %span=t("form.origin")
     %span="--------->"
-    %span=t(".destination")
-    %span=t(".description")
-    %span=t(".value")
+    %span=t("form.destination")
+    %span=t("form.description")
+    %span=t("form.value")
 -else
   %div.transactionLineItem{class: (defined?(editLink) and editLink) ?  "withLink" : ""}
     %span=transaction.origin.name

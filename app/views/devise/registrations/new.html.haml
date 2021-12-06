@@ -23,7 +23,7 @@
       %p#password_not_match.danger{ hidden: true }= t(".password_not_match")
 
     %div.fancy-link.colored.margin-bottom-s
-      = link_to t('devise.form.have_account'), new_user_session_path
+      = link_to t('devise.form.messages.have_account'), new_user_session_path
 
     = f.submit t('devise.form.signup'), remote: true, id: "submit_btt"
 

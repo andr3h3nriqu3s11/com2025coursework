@@ -1,9 +1,9 @@
 -if defined? header and header
   %div.quick-linkLineItem{class: (defined?(editLink) and editLink) ?  "withLink" : ""}
-    %span=t(".origin")
+    %span=t("form.origin")
     %span="--------->"
-    %span=t(".destination")
-    %span=t(".name")
+    %span=t("form.destination")
+    %span=t("from.name")
 -else
   %div.quick-linkLineItem{class: (defined?(editLink) and editLink) ?  "withLink" : ""}
     %span=quick_link.origin.name
